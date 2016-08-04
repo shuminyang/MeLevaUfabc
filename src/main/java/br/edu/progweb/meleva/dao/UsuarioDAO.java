@@ -16,7 +16,7 @@ import org.springframework.stereotype.Repository;
  * @author shu
  */
 @Repository
-public class UsuarioDAO implements UsuarioDAOInterface{
+public class UsuarioDAO implements UsuarioDAOInterface {
 
     @PersistenceContext
     private EntityManager manager;
@@ -27,7 +27,7 @@ public class UsuarioDAO implements UsuarioDAOInterface{
         try {
             us = (Usuario) manager.createNamedQuery("Usuario.findByLogin").setParameter("login", u.getLogin()).getSingleResult();
         } catch (NoResultException nre) {
-           System.out.println("Excessão buscarUsuarioPorNome: " + nre.getMessage());
+            System.out.println("Excessão buscarUsuarioPorNome: " + nre.getMessage());
         }
         return us;
     }
@@ -35,6 +35,17 @@ public class UsuarioDAO implements UsuarioDAOInterface{
     @Override
     public void criarLogin(Usuario u) {
         manager.persist(u);
+    }
+
+    @Override
+    public Usuario atualizarUsuario(Usuario u) {
+        Usuario us = manager.find(Usuario.class, u.getId());
+        us.setLogin(u.getLogin());
+        us.setSenha(u.getSenha());
+        us.setIdCarona(u.getIdCarona());
+        us.setInfoUsuario(u.getInfoUsuario());
+        us.setCarroList(u.getCarroList());
+        return us;
     }
 
 }

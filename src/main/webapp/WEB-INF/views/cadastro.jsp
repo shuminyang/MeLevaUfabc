@@ -15,7 +15,7 @@
         <jsp:include page="cabecalho.jsp"></jsp:include>
         <section>
             <div class="container">
-                <form class="text-left col-md-offset-4" >
+                <form class="text-left col-md-offset-4" method="POST" action="cadastraUsuario" >
                     <div class="row form-group">
                         <div class="col-md-6 input-group">
                             <span class="input-group-addon cadastro-addon"><i class="fa fa-user-plus fa-fw"></i></span>

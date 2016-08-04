@@ -15,6 +15,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -65,15 +66,14 @@ public class LoginController {
     }
 
     @Transactional
-    @RequestMapping(value = "", method = RequestMethod.POST)
-    public String criarConta(Usuario u, InfoUsuario iu, HttpServletRequest request, HttpServletResponse response) {
+    @RequestMapping(value = "cadastraUsuario", method = RequestMethod.POST)
+    public String criarConta(@ModelAttribute Usuario u, @ModelAttribute InfoUsuario iu, HttpServletRequest request, HttpServletResponse response) {
+        System.out.println("TESTE");
         
         if (u != null && iu != null) {
             
-            meLevaFacade.criarLogin(u);
             iu.setUsuario(u);
             iu.setDataInclusao(new Date());
-            iu.setDataNascimento(new Date());
             meLevaFacade.criarInfoUsuario(iu);
             
             return "login";

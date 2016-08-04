@@ -5,18 +5,16 @@
  */
 package br.edu.progweb.meleva.dao;
 
-import br.edu.progweb.meleva.entidades.Usuario;
+import br.edu.progweb.meleva.entidades.Carro;
 
 /**
  *
  * @author shu
  */
-public interface UsuarioDAOInterface {
-
-    public Usuario buscarUsuarioPorNome(Usuario u);
-
-    public void criarLogin(Usuario u);
+public interface CarroDAOInterface {
     
-    public Usuario atualizarUsuario(Usuario u);
-
+    public void criarCarro(Carro c);
+    
+    public void atualizarCarro(Carro c);
+    
 }

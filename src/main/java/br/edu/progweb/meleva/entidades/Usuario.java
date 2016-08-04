@@ -11,6 +11,7 @@ import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -42,7 +43,7 @@ public class Usuario implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Basic(optional = false)
     @Column(name = "ID")
     private Integer id;
@@ -61,7 +62,7 @@ public class Usuario implements Serializable {
     @JoinColumn(name = "ID_CARONA", referencedColumnName = "ID")
     @ManyToOne
     private Carona idCarona;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idUsuario")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idUsuario", fetch = FetchType.EAGER)
     private List<Carro> carroList;
 
     public Usuario() {
@@ -150,5 +151,5 @@ public class Usuario implements Serializable {
     public String toString() {
         return "br.edu.progweb.meleva.entidades.Usuario[ id=" + id + " ]";
     }
-    
+
 }

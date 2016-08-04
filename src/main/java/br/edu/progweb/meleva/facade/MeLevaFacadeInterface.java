@@ -5,6 +5,7 @@
  */
 package br.edu.progweb.meleva.facade;
 
+import br.edu.progweb.meleva.entidades.Carro;
 import br.edu.progweb.meleva.entidades.InfoUsuario;
 import br.edu.progweb.meleva.entidades.Usuario;
 
@@ -13,10 +14,10 @@ import br.edu.progweb.meleva.entidades.Usuario;
  * @author shu
  */
 public interface MeLevaFacadeInterface {
-    
+
     public Usuario validarLogin(Usuario u);
-    
-    public void criarLogin(Usuario u);
-    
+
     public void criarInfoUsuario(InfoUsuario iu);
+    
+    public void cadastrarCarro(Carro c);
 }
