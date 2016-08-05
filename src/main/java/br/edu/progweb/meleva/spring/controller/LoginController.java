@@ -58,7 +58,7 @@ public class LoginController {
 
             if (us != null) {
                 session.setAttribute("usuario", us);
-                return "projeto/index";
+                return "redirect:projeto/index";
             }
         }
 

@@ -26,8 +26,12 @@ public class ProfileController {
     }
     
     @RequestMapping(value = "projeto/logout", method = RequestMethod.GET)
-    public String logout() {        
-        return "forward:login";
+    public String logout(HttpServletRequest request) {        
+        HttpSession session = request.getSession();
+        session.invalidate();
+        
+        System.out.println("VAI SE FUDER");        
+        return "redirect:../login";
     }
 
     @RequestMapping(value = "projeto/profile", method = RequestMethod.GET)

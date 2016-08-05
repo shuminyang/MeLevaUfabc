@@ -53,6 +53,8 @@ public class MeLevaFacade implements MeLevaFacadeInterface {
     public void cadastrarCarro(Carro c) {        
         Usuario u = c.getIdUsuario();
         
+        carroDao.criarCarro(c);
+        
         u.getCarroList().add(c);
         u = usuarioDao.atualizarUsuario(u);
     }

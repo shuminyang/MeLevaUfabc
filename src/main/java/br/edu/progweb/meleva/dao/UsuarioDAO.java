@@ -43,8 +43,6 @@ public class UsuarioDAO implements UsuarioDAOInterface {
         us.setLogin(u.getLogin());
         us.setSenha(u.getSenha());
         us.setIdCarona(u.getIdCarona());
-        us.setInfoUsuario(u.getInfoUsuario());
-        us.setCarroList(u.getCarroList());
         return us;
     }
 

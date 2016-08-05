@@ -16,3 +16,25 @@ html {
 .container {
     max-width: 950px;
 }
+
+.navbar-default {    
+    border-color: #d8d8d8;
+}
+
+.well {
+    border-color: #d8d8d8;
+}
+
+.navbar-default .navbar-nav > li > .dropdown-menu {
+  background-color: #efefef;
+  border-radius: 5px;  
+}
+.navbar-default .navbar-nav > li > .dropdown-menu > li > a {
+  color: #777;
+}
+.navbar-default .navbar-nav .open .dropdown-menu > .active > a,
+.navbar-default .navbar-nav .open .dropdown-menu > .active > a:hover,
+.navbar-default .navbar-nav .open .dropdown-menu > .active > a:focus {
+  color: #837c7c;
+  background-color: #d8d8d8;
+}

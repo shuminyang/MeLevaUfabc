@@ -28,7 +28,7 @@
                     </c:forEach>
 
                 </div>
-                <button href="${pageContext.request.contextPath}/projeto/criarCarro" class="btn btn-primary well-sm" id="adicionarRemover">Adicionar carro</button>
+                <button class="btn btn-primary well-sm" id="adicionarRemover">Adicionar carro</button>
 
                 <div class="well" id="carroForm" style="display: none;">
                     <form method="POST" action="cadastrarCarro" class="form-group-sm form-inline">
@@ -58,6 +58,6 @@
 
         </section>
 
-        <script src="${pageContext.request.contextPath}/resources/js/CarroJS.js"></script>
+        <script src="${pageContext.request.contextPath}/resources/js/carroJS.js"></script>
     </body>
 </html>
