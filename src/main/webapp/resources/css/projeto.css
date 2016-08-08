@@ -17,6 +17,10 @@ html {
     max-width: 950px;
 }
 
+.row {
+    margin-bottom: 15px;
+}
+
 .navbar-default {    
     border-color: #d8d8d8;
 }

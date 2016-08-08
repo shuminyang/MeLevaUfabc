@@ -28,7 +28,7 @@
                     <li class="dropdown"><a href="#" class="dropdown-toggle" >Carona<span class="caret"></span></a>
                         <ul class="dropdown-menu">
                             <li><a href="${pageContext.request.contextPath}/projeto/carona">Criar</a></li>
-                            <li><a href="#">Pesquisar</a></li>
+                            <li><a href="${pageContext.request.contextPath}/projeto/listarCarona">Pesquisar</a></li>
                         </ul>
                     </li>
 

@@ -43,7 +43,7 @@ public class CarroController {
         
         meLevaFacade.cadastrarCarro(c);
 
-        return "projeto/carro";
+        return "redirect:carros";
 
     }
 

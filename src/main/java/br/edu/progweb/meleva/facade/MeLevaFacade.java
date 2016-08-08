@@ -5,12 +5,15 @@
  */
 package br.edu.progweb.meleva.facade;
 
+import br.edu.progweb.meleva.dao.CaronaDAOInterface;
 import br.edu.progweb.meleva.dao.CarroDAOInterface;
 import br.edu.progweb.meleva.dao.InfoUsuarioDAOInterface;
 import br.edu.progweb.meleva.dao.UsuarioDAOInterface;
+import br.edu.progweb.meleva.entidades.Carona;
 import br.edu.progweb.meleva.entidades.Carro;
 import br.edu.progweb.meleva.entidades.InfoUsuario;
 import br.edu.progweb.meleva.entidades.Usuario;
+import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -23,12 +26,15 @@ public class MeLevaFacade implements MeLevaFacadeInterface {
 
     @Autowired
     private UsuarioDAOInterface usuarioDao;
-    
+
     @Autowired
     private InfoUsuarioDAOInterface infoUsuarioDao;
-    
+
     @Autowired
     private CarroDAOInterface carroDao;
+
+    @Autowired
+    private CaronaDAOInterface caronaDao;
 
     @Override
     public Usuario validarLogin(Usuario u) {
@@ -40,7 +46,7 @@ public class MeLevaFacade implements MeLevaFacadeInterface {
             }
         }
         return null;
-    }    
+    }
 
     @Override
     public void criarInfoUsuario(InfoUsuario iu) {
@@ -50,14 +56,25 @@ public class MeLevaFacade implements MeLevaFacadeInterface {
     }
 
     @Override
-    public void cadastrarCarro(Carro c) {        
+    public void cadastrarCarro(Carro c) {
         Usuario u = c.getIdUsuario();
-        
+
         carroDao.criarCarro(c);
-        
+
         u.getCarroList().add(c);
         u = usuarioDao.atualizarUsuario(u);
     }
-    
-    
+
+    @Override
+    public void criarCarona(Carona c, Usuario u) {
+        caronaDao.criarCarona(c);
+        u.setIdCarona(c);
+        u = usuarioDao.atualizarUsuario(u);
+    }
+
+    @Override
+    public List<Carona> listarCarona() {
+        return caronaDao.listarCarona();
+    }
+
 }
