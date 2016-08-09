@@ -23,8 +23,8 @@
                     </c:if>
 
                     <c:forEach var="carro" items="${usuarioCarros}" >
-                        <p>Placa: ${carro.placa}</p>
-                        <p>Lugares: ${carro.lugares}</p>
+                        <p class="row">Placa: ${carro.placa}</p>
+                        <p class="row">Lugares: ${carro.lugares}</p>
                     </c:forEach>
 
                 </div>

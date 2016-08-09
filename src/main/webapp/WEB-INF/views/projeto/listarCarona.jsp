@@ -29,19 +29,23 @@
                         </thead>
                         <tbody>
                         <c:forEach var="carona" items="${listaCarona}">
-                            <tr>
+                            <tr class="clickable">
                                 <td>${carona.localPartida}</td>
                                 <td>${carona.localChegada}</td>
                                 <td>${carona.dataHorario}</td>
                                 <td>${carona.horarioChegada}</td>
                                 <td>${carona.custos}</td>
                                 <td>${carona.NLugares}</td>
+
+                            </tr>
+                            <tr>
+                                <td id="qweteste" style="display: none;"><strong>usuarios:</strong></td>
                             </tr>
                         </c:forEach>
                     </tbody>
                 </table>
             </div>
         </section>
-
+        <script src="${pageContext.request.contextPath}/resources/js/listarCaronaJS.js"></script>
     </body>
 </html>
