@@ -63,6 +63,7 @@
                     </div>
                 </form>
             </div>
-        </section>        
+            <script src="${pageContext.request.contextPath}/resources/js/cadastroJS.js"></script>
+        </section>
     </body>
 </html>

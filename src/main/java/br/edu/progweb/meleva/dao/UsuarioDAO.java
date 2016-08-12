@@ -42,7 +42,7 @@ public class UsuarioDAO implements UsuarioDAOInterface {
         Usuario us = manager.find(Usuario.class, u.getId());
         us.setLogin(u.getLogin());
         us.setSenha(u.getSenha());
-        us.setIdCarona(u.getIdCarona());
+//        us.setIdCarona(u.getIdCarona());
         return us;
     }
 

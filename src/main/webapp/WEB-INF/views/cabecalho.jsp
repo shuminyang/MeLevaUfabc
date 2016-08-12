@@ -14,6 +14,7 @@
         <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/bootstrap.css" type="text/css">
         <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/projeto.css" type="text/css">
         <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/font-awesome/css/font-awesome.min.css" type="text/css">
+        <script src="${pageContext.request.contextPath}/resources/js/jquery-3.1.0.js"></script>
     </head>
     <body>
         <header class="navbar navbar-default navbar-static-top" >

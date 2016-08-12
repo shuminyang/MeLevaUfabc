@@ -5,6 +5,7 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
     <head>
@@ -13,9 +14,18 @@
     </head>
     <body>
         <jsp:include page="cabecalho.jsp" ></jsp:include>
-        <section>
-            <div class="container">
-                <form class="text-left " action="login" method="POST">
+            <section>
+                <div class="container">
+                <c:if test="${not empty loginMsg}" >
+                    <div class="row">
+                        <div class="alert alert-danger col-md-4 col-md-offset-4">
+                             <span><i class="fa-exclamation-circle fa">  ${loginMsg}</i></span>
+                        </div>
+                    </div>
+                </c:if>
+
+
+                <form action="login" method="POST">
                     <div class="row form-group">
                         <div class="col-md-4 input-group col-md-offset-4">
                             <span class="input-group-addon"><i class="fa fa-user fa-fw"></i></span>
@@ -37,9 +47,9 @@
                             <button type="submit" class="btn btn-info btn-sm"><i class="fa fa-sign-in fa-2x"></i></button>
                         </div>
                     </div>
-                </form>                
-            </div>
-        </section>
+                </form>
 
+            </div>
+        </section>        
     </body>
 </html>

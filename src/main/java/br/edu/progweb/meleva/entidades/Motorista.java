@@ -6,53 +6,49 @@
 package br.edu.progweb.meleva.entidades;
 
 import java.io.Serializable;
+import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.validation.constraints.Size;
+import javax.validation.constraints.NotNull;
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
  * @author shu
  */
 @Entity
-@Table(name = "CARRO")
+@Table(name = "MOTORISTA")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "Carro.findAll", query = "SELECT c FROM Carro c"),
-    @NamedQuery(name = "Carro.findById", query = "SELECT c FROM Carro c WHERE c.id = :id"),
-    @NamedQuery(name = "Carro.findByPlaca", query = "SELECT c FROM Carro c WHERE c.placa = :placa"),
-    @NamedQuery(name = "Carro.findByLugares", query = "SELECT c FROM Carro c WHERE c.lugares = :lugares")})
-public class Carro implements Serializable {
+    @NamedQuery(name = "Motorista.findAll", query = "SELECT m FROM Motorista m"),
+    @NamedQuery(name = "Motorista.findById", query = "SELECT m FROM Motorista m WHERE m.id = :id")})
+public class Motorista implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
+    @NotNull
     @Column(name = "ID")
     private Integer id;
-    @Size(max = 255)
-    @Column(name = "PLACA")
-    private String placa;
-    @Column(name = "LUGARES")
-    private Integer lugares;
+    @OneToMany(mappedBy = "idMotorista")
+    private List<Carona> caronaList;
     @JoinColumn(name = "ID_USUARIO", referencedColumnName = "ID")
     @ManyToOne
     private Usuario idUsuario;
 
-    public Carro() {
+    public Motorista() {
     }
 
-    public Carro(Integer id) {
+    public Motorista(Integer id) {
         this.id = id;
     }
 
@@ -64,20 +60,13 @@ public class Carro implements Serializable {
         this.id = id;
     }
 
-    public String getPlaca() {
-        return placa;
+    @XmlTransient
+    public List<Carona> getCaronaList() {
+        return caronaList;
     }
 
-    public void setPlaca(String placa) {
-        this.placa = placa;
-    }
-
-    public Integer getLugares() {
-        return lugares;
-    }
-
-    public void setLugares(Integer lugares) {
-        this.lugares = lugares;
+    public void setCaronaList(List<Carona> caronaList) {
+        this.caronaList = caronaList;
     }
 
     public Usuario getIdUsuario() {
@@ -98,10 +87,10 @@ public class Carro implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Carro)) {
+        if (!(object instanceof Motorista)) {
             return false;
         }
-        Carro other = (Carro) object;
+        Motorista other = (Motorista) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
@@ -110,7 +99,7 @@ public class Carro implements Serializable {
 
     @Override
     public String toString() {
-        return "br.edu.progweb.meleva.entidades.Carro[ id=" + id + " ]";
+        return "br.edu.progweb.meleva.entidades.Motorista[ id=" + id + " ]";
     }
     
 }

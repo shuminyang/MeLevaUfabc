@@ -11,12 +11,9 @@ import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
@@ -43,26 +40,24 @@ public class Usuario implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
     @Column(name = "ID")
-    private Integer id;
-    @Basic(optional = false)
     @NotNull
-    @Size(min = 1, max = 255)
+    private Integer id;
+    @Size(max = 255)
     @Column(name = "LOGIN")
     private String login;
-    @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 255)
+    @Size(max = 255)
     @Column(name = "SENHA")
     private String senha;
     @OneToOne(cascade = CascadeType.ALL, mappedBy = "usuario")
     private InfoUsuario infoUsuario;
-    @JoinColumn(name = "ID_CARONA", referencedColumnName = "ID")
-    @ManyToOne
-    private Carona idCarona;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idUsuario", fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "idUsuario")
+    private List<Passageiro> passageiroList;
+    @OneToMany(mappedBy = "idUsuario")
+    private List<Motorista> motoristaList;
+    @OneToMany(mappedBy = "idUsuario")
     private List<Carro> carroList;
 
     public Usuario() {
@@ -70,12 +65,6 @@ public class Usuario implements Serializable {
 
     public Usuario(Integer id) {
         this.id = id;
-    }
-
-    public Usuario(Integer id, String login, String senha) {
-        this.id = id;
-        this.login = login;
-        this.senha = senha;
     }
 
     public Integer getId() {
@@ -110,12 +99,22 @@ public class Usuario implements Serializable {
         this.infoUsuario = infoUsuario;
     }
 
-    public Carona getIdCarona() {
-        return idCarona;
+    @XmlTransient
+    public List<Passageiro> getPassageiroList() {
+        return passageiroList;
     }
 
-    public void setIdCarona(Carona idCarona) {
-        this.idCarona = idCarona;
+    public void setPassageiroList(List<Passageiro> passageiroList) {
+        this.passageiroList = passageiroList;
+    }
+
+    @XmlTransient
+    public List<Motorista> getMotoristaList() {
+        return motoristaList;
+    }
+
+    public void setMotoristaList(List<Motorista> motoristaList) {
+        this.motoristaList = motoristaList;
     }
 
     @XmlTransient
@@ -151,5 +150,5 @@ public class Usuario implements Serializable {
     public String toString() {
         return "br.edu.progweb.meleva.entidades.Usuario[ id=" + id + " ]";
     }
-
+    
 }

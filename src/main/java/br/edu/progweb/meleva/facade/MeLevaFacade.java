@@ -51,8 +51,12 @@ public class MeLevaFacade implements MeLevaFacadeInterface {
     @Override
     public void criarInfoUsuario(InfoUsuario iu) {
         Usuario u = iu.getUsuario();
-        usuarioDao.criarLogin(u);
+        usuarioDao.criarLogin(u);        
+        iu.setUsuario(u);
+        
+        iu.setId(u.getId());
         infoUsuarioDao.criarInfoUsuario(iu);
+        
     }
 
     @Override
@@ -68,7 +72,7 @@ public class MeLevaFacade implements MeLevaFacadeInterface {
     @Override
     public void criarCarona(Carona c, Usuario u) {
         caronaDao.criarCarona(c);
-        u.setIdCarona(c);
+//        u.setIdCarona(c);
         u = usuarioDao.atualizarUsuario(u);
     }
 

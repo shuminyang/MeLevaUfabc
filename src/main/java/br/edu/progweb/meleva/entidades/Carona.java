@@ -14,13 +14,14 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
@@ -40,15 +41,15 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Carona.findByLocalChegada", query = "SELECT c FROM Carona c WHERE c.localChegada = :localChegada"),
     @NamedQuery(name = "Carona.findByDataHorario", query = "SELECT c FROM Carona c WHERE c.dataHorario = :dataHorario"),
     @NamedQuery(name = "Carona.findByCustos", query = "SELECT c FROM Carona c WHERE c.custos = :custos"),
-    @NamedQuery(name = "Carona.findByHorarioChegada", query = "SELECT c FROM Carona c WHERE c.horarioChegada = :horarioChegada")})
+    @NamedQuery(name = "Carona.findByHorarioChegada", query = "SELECT c FROM Carona c WHERE c.horarioChegada = :horarioChegada"),
+    @NamedQuery(name = "Carona.findByAtivo", query = "SELECT c FROM Carona c WHERE c.ativo = :ativo")})
 public class Carona implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
-    @NotNull
     @Column(name = "ID")
-    @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
     @Column(name = "N_LUGARES")
     private Integer nLugares;
@@ -67,8 +68,13 @@ public class Carona implements Serializable {
     @Column(name = "HORARIO_CHEGADA")
     @Temporal(TemporalType.DATE)
     private Date horarioChegada;
+    @Column(name = "ATIVO")
+    private Boolean ativo;
+    @JoinColumn(name = "ID_MOTORISTA", referencedColumnName = "ID")
+    @ManyToOne
+    private Motorista idMotorista;
     @OneToMany(mappedBy = "idCarona")
-    private List<Usuario> usuarioList;
+    private List<Passageiro> passageiroList;
 
     public Carona() {
     }
@@ -133,13 +139,29 @@ public class Carona implements Serializable {
         this.horarioChegada = horarioChegada;
     }
 
-    @XmlTransient
-    public List<Usuario> getUsuarioList() {
-        return usuarioList;
+    public Boolean getAtivo() {
+        return ativo;
     }
 
-    public void setUsuarioList(List<Usuario> usuarioList) {
-        this.usuarioList = usuarioList;
+    public void setAtivo(Boolean ativo) {
+        this.ativo = ativo;
+    }
+
+    public Motorista getIdMotorista() {
+        return idMotorista;
+    }
+
+    public void setIdMotorista(Motorista idMotorista) {
+        this.idMotorista = idMotorista;
+    }
+
+    @XmlTransient
+    public List<Passageiro> getPassageiroList() {
+        return passageiroList;
+    }
+
+    public void setPassageiroList(List<Passageiro> passageiroList) {
+        this.passageiroList = passageiroList;
     }
 
     @Override

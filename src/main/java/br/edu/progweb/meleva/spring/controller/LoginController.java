@@ -18,6 +18,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 /**
  *
@@ -61,24 +62,65 @@ public class LoginController {
                 return "redirect:projeto/index";
             }
         }
-
+        request.setAttribute("loginMsg", "Usuário ou senha inválidos!");
         return "login";
     }
 
     @Transactional
-    @RequestMapping(value = "cadastraUsuario", method = RequestMethod.POST)
-    public String criarConta(@ModelAttribute Usuario u, @ModelAttribute InfoUsuario iu, HttpServletRequest request, HttpServletResponse response) {
-        System.out.println("TESTE");
-        
+    @RequestMapping(value = "cadastraUsuario", method = RequestMethod.POST, produces = "application/json")
+    @ResponseBody
+    public CadastroControl criarConta(@ModelAttribute Usuario u, @ModelAttribute InfoUsuario iu, HttpServletRequest request, HttpServletResponse response) {
+        CadastroControl rc = new CadastroControl();
         if (u != null && iu != null) {
-            
+
             iu.setUsuario(u);
             iu.setDataInclusao(new Date());
-            meLevaFacade.criarInfoUsuario(iu);
-            
-            return "login";
+            try {
+                meLevaFacade.criarInfoUsuario(iu);
+                rc.setCadastrado(true);
+                rc.setMensagem("Usuário cadastrado!");
+                return rc;
+            } catch (Exception e) {
+                System.out.println("ERRO: " + e.getMessage());
+                rc.setCadastrado(false);
+                rc.setMensagem("Erro durante o cadastro! Contate o adm e tente novamente");
+            }
         }
-        return null;
+        rc.setCadastrado(false);
+        rc.setMensagem("Há parâmetros em branco!");
+        return rc;
+
+    }
+
+    public class CadastroControl {
+
+        private boolean cadastrado;
+        private String mensagem;
+
+        public CadastroControl() {
+        }
+
+        public CadastroControl(boolean cadastrado, String mensagem) {
+            this.cadastrado = cadastrado;
+            this.mensagem = mensagem;
+        }
+
+        public boolean isCadastrado() {
+            return cadastrado;
+        }
+
+        public void setCadastrado(boolean cadastrado) {
+            this.cadastrado = cadastrado;
+        }
+
+        public String getMensagem() {
+            return mensagem;
+        }
+
+        public void setMensagem(String mensagem) {
+            this.mensagem = mensagem;
+        }
+
     }
 
 }
