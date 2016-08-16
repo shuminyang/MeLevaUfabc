@@ -13,6 +13,15 @@ html {
     min-height: 100%;
 }
 
+.h2 {
+    margin-top: 0px;
+    margin-bottom: 30px;
+}
+
+.projeto-well {    
+    padding-bottom: 0px;
+}
+
 .container {
     max-width: 950px;
 }

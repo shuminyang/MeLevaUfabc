@@ -11,6 +11,7 @@ import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -57,7 +58,7 @@ public class Usuario implements Serializable {
     private List<Passageiro> passageiroList;
     @OneToMany(mappedBy = "idUsuario")
     private List<Motorista> motoristaList;
-    @OneToMany(mappedBy = "idUsuario")
+    @OneToMany(mappedBy = "idUsuario", fetch = FetchType.EAGER)
     private List<Carro> carroList;
 
     public Usuario() {

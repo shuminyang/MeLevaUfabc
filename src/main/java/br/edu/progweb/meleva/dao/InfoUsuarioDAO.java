@@ -25,4 +25,16 @@ public class InfoUsuarioDAO implements InfoUsuarioDAOInterface {
         manager.persist(iu);
     }
 
+    @Override
+    public InfoUsuario atualizarInfoUsuario(InfoUsuario iu) {
+        InfoUsuario info = manager.find(InfoUsuario.class, iu.getId());
+        info.setCpf(iu.getCpf());
+        info.setDataNascimento(iu.getDataNascimento());
+        info.setEmail(iu.getEmail());
+        info.setEndereco(iu.getEndereco());
+        info.setNome(iu.getNome());
+        return info;
+        
+    }
+
 }

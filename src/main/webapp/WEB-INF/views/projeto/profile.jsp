@@ -5,6 +5,7 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
     <head>
@@ -17,39 +18,43 @@
             <section>
                 <div class="container" >
                     <div class="well">
-                        <div class="row">
-                            <label class="col-md-6" for="usuarioNome" >Nome:</label>
-                            <span id="usuarioNome" class="col-md-6" >${usuarioInfo.nome}</span>
+
+                        <p class="h2">Olá ${usuario.login}! Abaixo suas informações</p>
+
+                    <div class="row">
+                        <label class="col-md-4" for="nome" >Nome:</label>
+                        <span id="nome" class="col-md-4 col-md-offset-2 text-info" >${usuarioInfo.nome}</span>
                     </div>      
 
                     <div class="row">
-                        <label class="col-md-6" for="usuarioEnd" >Endereco:</label>
-                        <span id="usuarioEnd" class="col-md-6" >${usuarioInfo.endereco}</span>
+                        <label class="col-md-4" for="endereco" >Endereco:</label>
+                        <span id="endereco" class="col-md-4 col-md-offset-2 text-info" >${usuarioInfo.endereco}</span>
                     </div>
 
                     <div class="row">
-                        <label class="col-md-6" for="usuarioCpf" >CPF:</label>
-                        <span id="usuarioCpf" class="col-md-6" >${usuarioInfo.cpf}</span>
+                        <label class="col-md-4" for="cpf" >CPF:</label>
+                        <span id="cpf" class="col-md-4 col-md-offset-2 text-info" >${usuarioInfo.cpf}</span>
                     </div>
 
                     <div class="row">
-                        <label class="col-md-6" for="usuarioEmail" >Email:</label>
-                        <span id="usuarioEmail" class="col-md-6" >${usuarioInfo.email}</span>
+                        <label class="col-md-4" for="email" >Email:</label>
+                        <span id="email" class="col-md-4 col-md-offset-2 text-info" >${usuarioInfo.email}</span>
                     </div>
 
                     <div class="row">
-                        <label class="col-md-6" for="usuarioNasc" >Data nascimento:</label>
-                        <span id="usuarioNasc" class="col-md-6" >${usuarioInfo.dataNascimento}</span>
+                        <label class="col-md-4" for="dataNascimento" >Data nascimento:</label>
+                        <span id="dataNascimento" class="col-md-4 col-md-offset-2 text-info" ><fmt:formatDate pattern="dd/MM/yyyy" value="${usuarioInfo.dataNascimento}" /></span>
                     </div>
 
                     <div class="row">
-                        <label class="col-md-6" for="usuarioIncl" >Data inclusão:</label>
-                        <span id="usuarioIncl" class="col-md-6" >${usuarioInfo.dataInclusao}</span>
+                        <label class="col-md-4" for="dataInclusao" >Data inclusão:</label>
+                        <span id="dataInclusao" class="col-md-4 col-md-offset-2 text-info" ><fmt:formatDate pattern="dd/MM/yyyy" value="${usuarioInfo.dataInclusao}" /></span>
                     </div>
 
                 </div>
+                <a class="btn btn-info btn-group-sm row col-md-offset-10" href="alterarProfile">Atualizar informação</a>
             </div>
         </section>
-
+        <!--<script src="${pageContext.request.contextPath}/resources/js/profileJS.js"></script>-->
     </body>
 </html>

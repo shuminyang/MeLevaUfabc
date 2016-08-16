@@ -15,4 +15,6 @@ public interface InfoUsuarioDAOInterface {
     
     public void criarInfoUsuario(InfoUsuario iu);
     
+    public InfoUsuario atualizarInfoUsuario(InfoUsuario iu);
+    
 }

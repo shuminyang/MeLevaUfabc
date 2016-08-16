@@ -81,4 +81,9 @@ public class MeLevaFacade implements MeLevaFacadeInterface {
         return caronaDao.listarCarona();
     }
 
+    @Override
+    public InfoUsuario atualizarInfoUsuario(InfoUsuario iu) {
+        return infoUsuarioDao.atualizarInfoUsuario(iu);
+    }
+
 }

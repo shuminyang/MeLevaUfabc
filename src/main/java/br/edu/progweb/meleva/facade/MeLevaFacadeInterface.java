@@ -26,4 +26,6 @@ public interface MeLevaFacadeInterface {
     public void criarCarona(Carona c, Usuario u);
     
     public List<Carona> listarCarona();
+    
+    public InfoUsuario atualizarInfoUsuario(InfoUsuario iu);
 }

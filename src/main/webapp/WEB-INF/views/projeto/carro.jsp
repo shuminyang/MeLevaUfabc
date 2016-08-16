@@ -19,7 +19,7 @@
                     <div class="well">
 
                     <c:if test="${empty usuarioCarros}">
-                        <p>Você não possui carros!</p>                        
+                        <h5>Você não possui carros!</h5>                        
                     </c:if>
 
                     <c:forEach var="carro" items="${usuarioCarros}" >
@@ -30,7 +30,7 @@
                 </div>
                 <button class="btn btn-primary well-sm" id="adicionarRemover">Adicionar carro</button>
 
-                <div class="well" id="carroForm" style="display: none;">
+                <div class="well projeto-well" id="carroForm" style="display: none;">
                     <form method="POST" action="cadastrarCarro" class="form-group-sm form-inline">
                         <div class="row">
                             <div class="col-md-4">
