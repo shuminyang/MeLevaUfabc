@@ -8,10 +8,12 @@ package br.edu.progweb.meleva.facade;
 import br.edu.progweb.meleva.dao.CaronaDAOInterface;
 import br.edu.progweb.meleva.dao.CarroDAOInterface;
 import br.edu.progweb.meleva.dao.InfoUsuarioDAOInterface;
+import br.edu.progweb.meleva.dao.MotoristaDAOInterface;
 import br.edu.progweb.meleva.dao.UsuarioDAOInterface;
 import br.edu.progweb.meleva.entidades.Carona;
 import br.edu.progweb.meleva.entidades.Carro;
 import br.edu.progweb.meleva.entidades.InfoUsuario;
+import br.edu.progweb.meleva.entidades.Motorista;
 import br.edu.progweb.meleva.entidades.Usuario;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,6 +38,9 @@ public class MeLevaFacade implements MeLevaFacadeInterface {
     @Autowired
     private CaronaDAOInterface caronaDao;
 
+    @Autowired
+    private MotoristaDAOInterface motoristaDao;
+
     @Override
     public Usuario validarLogin(Usuario u) {
         Usuario us = (Usuario) usuarioDao.buscarUsuarioPorNome(u);
@@ -51,12 +56,12 @@ public class MeLevaFacade implements MeLevaFacadeInterface {
     @Override
     public void criarInfoUsuario(InfoUsuario iu) {
         Usuario u = iu.getUsuario();
-        usuarioDao.criarLogin(u);        
+        usuarioDao.criarLogin(u);
         iu.setUsuario(u);
-        
+
         iu.setId(u.getId());
         infoUsuarioDao.criarInfoUsuario(iu);
-        
+
     }
 
     @Override
@@ -84,6 +89,11 @@ public class MeLevaFacade implements MeLevaFacadeInterface {
     @Override
     public InfoUsuario atualizarInfoUsuario(InfoUsuario iu) {
         return infoUsuarioDao.atualizarInfoUsuario(iu);
+    }
+
+    @Override
+    public void criarMotorista(Motorista m) {
+        motoristaDao.criarMotorista(m);
     }
 
 }

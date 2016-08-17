@@ -6,6 +6,7 @@
 package br.edu.progweb.meleva.spring.controller;
 
 import br.edu.progweb.meleva.entidades.Carona;
+import br.edu.progweb.meleva.entidades.Motorista;
 import br.edu.progweb.meleva.entidades.Usuario;
 import br.edu.progweb.meleva.facade.MeLevaFacadeInterface;
 import java.util.List;
@@ -53,6 +54,12 @@ public class CaronaController {
     public String criarCarona(HttpServletRequest request, Carona c) {
         HttpSession session = request.getSession();
         Usuario u = (Usuario) session.getAttribute("usuario");
+        Motorista m = new Motorista();
+        m.setIdUsuario(u);
+        meLevaFacade.criarMotorista(m);
+        u.getMotoristaList().add(m);
+                
+//        c.setIdMotorista(idMotorista);
         meLevaFacade.criarCarona(c, u);
         return "projeto/carona";
     }
