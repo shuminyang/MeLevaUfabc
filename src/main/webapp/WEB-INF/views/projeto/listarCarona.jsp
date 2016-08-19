@@ -21,8 +21,7 @@
                     <a href="#" class="caronaLink">
                         <div class="col-md-4 well-sm well">                        
                             <div class="row">
-                                <label for="motorista" class="col-md-8">Motorista:</label>
-                                <span id="motorista" class="col-md-4 text-info">${carona.idMotorista.idUsuario.infoUsuario.nome}</span>
+                                <i class="col-md-6 fa fa-user fa-fw well-sm well">${carona.idMotorista.idUsuario.infoUsuario.nome}</i>
                             </div>
                             <div class="row">
                                 <label for="localPartida" class="col-md-8">Local de partida:</label>

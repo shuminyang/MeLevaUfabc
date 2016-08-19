@@ -40,7 +40,7 @@ public class Motorista implements Serializable {
     @Basic(optional = false)
     @NotNull
     @Column(name = "ID")
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
     @OneToMany(mappedBy = "idMotorista")
     private List<Carona> caronaList;
