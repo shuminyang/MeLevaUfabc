@@ -13,6 +13,10 @@ html {
     min-height: 100%;
 }
 
+.caronaLink {
+    color: #000;
+}
+
 .h2 {
     margin-top: 0px;
     margin-bottom: 30px;
@@ -45,15 +49,15 @@ html {
 }
 
 .navbar-default .navbar-nav > li > .dropdown-menu {
-  background-color: #efefef;
-  border-radius: 5px;  
+    background-color: #efefef;
+    border-radius: 5px;  
 }
 .navbar-default .navbar-nav > li > .dropdown-menu > li > a {
-  color: #777;
+    color: #777;
 }
 .navbar-default .navbar-nav .open .dropdown-menu > .active > a,
 .navbar-default .navbar-nav .open .dropdown-menu > .active > a:hover,
 .navbar-default .navbar-nav .open .dropdown-menu > .active > a:focus {
-  color: #837c7c;
-  background-color: #d8d8d8;
+    color: #837c7c;
+    background-color: #d8d8d8;
 }

@@ -58,8 +58,7 @@ public class CaronaController {
         m.setIdUsuario(u);
         meLevaFacade.criarMotorista(m);
         u.getMotoristaList().add(m);
-                
-//        c.setIdMotorista(idMotorista);
+        c.setIdMotorista(m);
         meLevaFacade.criarCarona(c, u);
         return "projeto/carona";
     }

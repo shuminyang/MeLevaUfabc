@@ -54,9 +54,9 @@ public class Usuario implements Serializable {
     private String senha;
     @OneToOne(cascade = CascadeType.ALL, mappedBy = "usuario")
     private InfoUsuario infoUsuario;
-    @OneToMany(mappedBy = "idUsuario")
+    @OneToMany(mappedBy = "idUsuario", fetch = FetchType.EAGER)
     private List<Passageiro> passageiroList;
-    @OneToMany(mappedBy = "idUsuario")
+    @OneToMany(mappedBy = "idUsuario", fetch = FetchType.EAGER)
     private List<Motorista> motoristaList;
     @OneToMany(mappedBy = "idUsuario", fetch = FetchType.EAGER)
     private List<Carro> carroList;

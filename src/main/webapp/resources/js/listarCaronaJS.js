@@ -5,8 +5,7 @@
  */
 
 $(document).ready(function () {
-    $('div.container table tr.clickable').on('click', function () {
-        console.log('asdf');
-        $('#qweteste').slideToggle();
+    $('div.well').click(function () {
+        console.log('asd');
     });
 });

@@ -16,34 +16,42 @@
         <jsp:include page="cabecalho.jsp"></jsp:include>
             <section>
                 <div class="container">
-                    <table class="table table-hover">
-                        <thead>
-                            <tr>
-                                <th>Local de Partida</th>
-                                <th>Local de Chegada</th>
-                                <th>Data e horário</th>
-                                <th>Horário de chegada</th>
-                                <th>Custos</th>
-                                <th>Lugares</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                        <c:forEach var="carona" items="${listaCarona}">
-                            <tr class="clickable">
-                                <td>${carona.localPartida}</td>
-                                <td>${carona.localChegada}</td>
-                                <td>${carona.dataHorario}</td>
-                                <td>${carona.horarioChegada}</td>
-                                <td>${carona.custos}</td>
-                                <td>${carona.NLugares}</td>
 
-                            </tr>
-                            <tr>
-                                <td id="qweteste" style="display: none;"><strong>usuarios:</strong></td>
-                            </tr>
-                        </c:forEach>
-                    </tbody>
-                </table>
+                <c:forEach var="carona" items="${listaCarona}" >
+                    <a href="#" class="caronaLink">
+                        <div class="col-md-4 well-sm well">                        
+                            <div class="row">
+                                <label for="motorista" class="col-md-8">Motorista:</label>
+                                <span id="motorista" class="col-md-4 text-info">${carona.idMotorista.idUsuario.infoUsuario.nome}</span>
+                            </div>
+                            <div class="row">
+                                <label for="localPartida" class="col-md-8">Local de partida:</label>
+                                <span id="localPartida" class="col-md-4 text-info">${carona.localPartida}</span>
+                            </div>
+                            <div class="row">
+                                <label for="localChegada" class="col-md-8">Local de chegada:</label>
+                                <span id="localChegada" class="col-md-4 text-info">${carona.localChegada}</span>
+                            </div>
+                            <div class="row">
+                                <label for="dataHorario" class="col-md-8">Data de partida:</label>
+                                <span id="dataHorario" class="col-md-4 text-info">${carona.dataHorario}</span>
+                            </div>
+                            <div class="row">
+                                <label for="horarioChegada" class="col-md-8">Horario de chegada:</label>
+                                <span id="horarioChegada" class="col-md-4 text-info">${carona.horarioChegada}</span>
+                            </div>
+                            <div class="row">
+                                <label for="custos" class="col-md-8">Custos:</label>
+                                <span id="custos" class="col-md-4 text-info">${carona.custos}</span>                            
+                            </div>
+                            <div class="row">
+                                <label id="lugares" class="col-md-8">Lugares:</label>
+                                <span id="lugares" class="col-md-4 text-info">${carona.NLugares}</span>
+                            </div>
+                        </div>
+                    </a>
+                </c:forEach>
+
             </div>
         </section>
         <script src="${pageContext.request.contextPath}/resources/js/listarCaronaJS.js"></script>

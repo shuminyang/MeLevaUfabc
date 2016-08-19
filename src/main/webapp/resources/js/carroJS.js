@@ -8,6 +8,6 @@ $(document).ready(function () {
     $('#mostraCarro').on('click', 'button', function () {
         var botao = $('#adicionarRemover');
         botao.html(botao.html() === 'Adicionar carro' ? 'Cancelar' : 'Adicionar carro');
-        $('#carroForm').slideToggle();
+        $('#carroForm').slideToggle(200);
     });
 });
