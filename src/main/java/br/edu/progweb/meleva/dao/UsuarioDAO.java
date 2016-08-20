@@ -27,7 +27,7 @@ public class UsuarioDAO implements UsuarioDAOInterface {
         try {
             us = (Usuario) manager.createNamedQuery("Usuario.findByLogin").setParameter("login", u.getLogin()).getSingleResult();
         } catch (NoResultException nre) {
-            System.out.println("Excessão buscarUsuarioPorNome: " + nre.getMessage());
+            System.out.println("Exceção buscarUsuarioPorNome: " + nre.getMessage());
         }
         return us;
     }
