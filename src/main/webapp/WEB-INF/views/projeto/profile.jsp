@@ -13,13 +13,16 @@
         <title>MeLeva</title>
     </head>
     <body>
-        <jsp:include page="cabecalho.jsp"></jsp:include>
+        <jsp:include page="cabecalho.jsp" />
 
-            <section>
-                <div class="container" >
-                    <div class="well">
+        <section>
+            <div class="container" >
+                <div class="well">
 
-                        <p class="h2">Olá ${usuario.login}! Abaixo suas informações</p>
+                    <h2>Olá ${usuario.login}!</h2>
+                    <h4>Abaixo suas informações</h4>
+
+                    <hr/>
 
                     <div class="row">
                         <label class="col-md-4" for="nome" >Nome:</label>

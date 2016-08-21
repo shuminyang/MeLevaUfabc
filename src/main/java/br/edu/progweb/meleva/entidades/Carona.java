@@ -11,6 +11,7 @@ import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -73,7 +74,7 @@ public class Carona implements Serializable {
     @JoinColumn(name = "ID_MOTORISTA", referencedColumnName = "ID")
     @ManyToOne
     private Motorista idMotorista;
-    @OneToMany(mappedBy = "idCarona")
+    @OneToMany(mappedBy = "idCarona", fetch = FetchType.EAGER)
     private List<Passageiro> passageiroList;
 
     public Carona() {

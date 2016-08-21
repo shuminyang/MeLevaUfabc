@@ -5,7 +5,10 @@
  */
 package br.edu.progweb.meleva.spring.controller;
 
+import br.edu.progweb.meleva.entidades.Carona;
 import br.edu.progweb.meleva.entidades.InfoUsuario;
+import br.edu.progweb.meleva.entidades.Motorista;
+import br.edu.progweb.meleva.entidades.Passageiro;
 import br.edu.progweb.meleva.entidades.Usuario;
 import br.edu.progweb.meleva.facade.MeLevaFacadeInterface;
 import javax.servlet.http.HttpServletRequest;
@@ -32,7 +35,33 @@ public class ProfileController {
     public String index(HttpServletRequest request) {
         HttpSession session = request.getSession();
         Usuario u = (Usuario) session.getAttribute("usuario");
-        request.setAttribute("usuarioInfo", u.getInfoUsuario());
+        Motorista m = null;
+        Passageiro p = null;
+        Carona c = null;
+        for (Motorista mot : u.getMotoristaList()) {
+            if (mot.getAtivo()) {
+                m = mot;
+            }
+        }
+        if (m == null) {
+            for (Passageiro pass : u.getPassageiroList()) {
+                if (pass.getAtivo()) {
+                    p = pass;
+                }
+            }
+            if (p != null) {
+                c = p.getIdCarona();
+            }
+        } else {
+            for (Carona car : m.getCaronaList()) {
+                if (car.getAtivo()) {
+                    c = car;
+                }
+            }
+        }
+        request.setAttribute("caronaAtiva", c);
+        request.setAttribute("passageiroUsuario", p);
+        request.setAttribute("motoristaUsuario", m);
         return "projeto/index";
     }
 
@@ -64,7 +93,7 @@ public class ProfileController {
 
     @Transactional
     @RequestMapping(value = "projeto/updateProfile", method = RequestMethod.POST)
-    public String updateProfile(HttpServletRequest request, InfoUsuario iu, @RequestParam("senha") String senha) {        
+    public String updateProfile(HttpServletRequest request, InfoUsuario iu, @RequestParam("senha") String senha) {
         HttpSession session = request.getSession();
         Usuario u = (Usuario) session.getAttribute("usuario");
         iu.setId(u.getInfoUsuario().getId());

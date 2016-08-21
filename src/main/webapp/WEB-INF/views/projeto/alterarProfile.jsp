@@ -13,14 +13,14 @@
         <title>MeLeva</title>
     </head>
     <body>
-        <jsp:include page="cabecalho.jsp"></jsp:include>
-            <section>
-                <div class="container">
-                    <form action="updateProfile" method="POST" class="col-md-offset-4">
-                        <div class="row form-group">
-                            <div class="col-md-6 input-group">
-                                <span class="input-group-addon cadastro-addon"><i class="fa fa-user fa-fw"></i></span>
-                                <input type="text" class="form-control" id="nome" name="nome" value="${usuarioInfo.nome}"/>
+        <jsp:include page="cabecalho.jsp" />
+        <section>
+            <div class="container">
+                <form action="updateProfile" method="POST" class="col-md-offset-4">
+                    <div class="row form-group">
+                        <div class="col-md-6 input-group">
+                            <span class="input-group-addon cadastro-addon"><i class="fa fa-user fa-fw"></i></span>
+                            <input type="text" class="form-control" id="nome" name="nome" value="${usuarioInfo.nome}"/>
                         </div>
                     </div>
                     <div class="row form-group">

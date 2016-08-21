@@ -10,6 +10,7 @@ import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -42,8 +43,10 @@ public class Motorista implements Serializable {
     @Column(name = "ID")
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
-    @OneToMany(mappedBy = "idMotorista")
+    @OneToMany(mappedBy = "idMotorista", fetch = FetchType.EAGER)
     private List<Carona> caronaList;
+    @Column(name = "ATIVO")
+    private Boolean ativo;
     @JoinColumn(name = "ID_USUARIO", referencedColumnName = "ID")
     @ManyToOne
     private Usuario idUsuario;
@@ -104,5 +107,13 @@ public class Motorista implements Serializable {
     public String toString() {
         return "br.edu.progweb.meleva.entidades.Motorista[ id=" + id + " ]";
     }
-    
+
+    public Boolean getAtivo() {
+        return ativo;
+    }
+
+    public void setAtivo(Boolean ativo) {
+        this.ativo = ativo;
+    }
+
 }

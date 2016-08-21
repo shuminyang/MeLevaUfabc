@@ -13,10 +13,10 @@
         <title>MeLeva</title>
     </head>
     <body>
-        <jsp:include page="cabecalho.jsp"></jsp:include>
-            <section>
-                <div class="container" id="mostraCarro">
-                    <div class="well">
+        <jsp:include page="cabecalho.jsp" />
+        <section>
+            <div class="container" id="mostraCarro">
+                <div class="well">
 
                     <c:if test="${empty usuarioCarros}">
                         <h5>Você não possui carros!</h5>                        

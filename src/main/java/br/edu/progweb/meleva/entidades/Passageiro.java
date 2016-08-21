@@ -9,6 +9,8 @@ import java.io.Serializable;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -35,10 +37,13 @@ public class Passageiro implements Serializable {
     @Basic(optional = false)
     @NotNull
     @Column(name = "ID")
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
     @JoinColumn(name = "ID_CARONA", referencedColumnName = "ID")
     @ManyToOne
     private Carona idCarona;
+    @Column(name = "ATIVO")
+    private Boolean ativo;
     @JoinColumn(name = "ID_USUARIO", referencedColumnName = "ID")
     @ManyToOne
     private Usuario idUsuario;
@@ -98,5 +103,12 @@ public class Passageiro implements Serializable {
     public String toString() {
         return "br.edu.progweb.meleva.entidades.Passageiro[ id=" + id + " ]";
     }
-    
+
+    public Boolean getAtivo() {
+        return ativo;
+    }
+
+    public void setAtivo(Boolean ativo) {
+        this.ativo = ativo;
+    }
 }

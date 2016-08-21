@@ -9,11 +9,13 @@ import br.edu.progweb.meleva.dao.CaronaDAOInterface;
 import br.edu.progweb.meleva.dao.CarroDAOInterface;
 import br.edu.progweb.meleva.dao.InfoUsuarioDAOInterface;
 import br.edu.progweb.meleva.dao.MotoristaDAOInterface;
+import br.edu.progweb.meleva.dao.PassageiroDAOInterface;
 import br.edu.progweb.meleva.dao.UsuarioDAOInterface;
 import br.edu.progweb.meleva.entidades.Carona;
 import br.edu.progweb.meleva.entidades.Carro;
 import br.edu.progweb.meleva.entidades.InfoUsuario;
 import br.edu.progweb.meleva.entidades.Motorista;
+import br.edu.progweb.meleva.entidades.Passageiro;
 import br.edu.progweb.meleva.entidades.Usuario;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,6 +42,9 @@ public class MeLevaFacade implements MeLevaFacadeInterface {
 
     @Autowired
     private MotoristaDAOInterface motoristaDao;
+
+    @Autowired
+    private PassageiroDAOInterface passageiroDao;
 
     @Override
     public Usuario validarLogin(Usuario u) {
@@ -94,6 +99,16 @@ public class MeLevaFacade implements MeLevaFacadeInterface {
     @Override
     public void criarMotorista(Motorista m) {
         motoristaDao.criarMotorista(m);
+    }
+
+    @Override
+    public Carona caronaPeloId(Integer id) {
+        return caronaDao.caronaPeloId(id);
+    }
+
+    @Override
+    public void criarPassageiro(Passageiro p) {
+        passageiroDao.criarPassageiro(p);
     }
 
 }

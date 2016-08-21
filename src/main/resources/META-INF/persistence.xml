@@ -7,13 +7,7 @@
     <class>br.edu.progweb.meleva.entidades.Carro</class>
     <class>br.edu.progweb.meleva.entidades.Carona</class>
     <class>br.edu.progweb.meleva.entidades.Passageiro</class>
-    <class>br.edu.progweb.meleva.entidades.Motorista</class>
-    <class>br.edu.progweb.meleva.entidades.Motorista_1</class>
-    <class>br.edu.progweb.meleva.entidades.Carona_1</class>
-    <class>br.edu.progweb.meleva.entidades.Passageiro_1</class>
-    <class>br.edu.progweb.meleva.entidades.Usuario_1</class>
-    <class>br.edu.progweb.meleva.entidades.InfoUsuario_1</class>
-    <class>br.edu.progweb.meleva.entidades.Carro_1</class>
+    <class>br.edu.progweb.meleva.entidades.Motorista</class>    
     <exclude-unlisted-classes>false</exclude-unlisted-classes>
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/progweb?zeroDateTimeBehavior=convertToNull"/>

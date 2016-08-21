@@ -5,6 +5,7 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
     <head>
@@ -12,11 +13,28 @@
         <title>MeLeva</title>
     </head>
     <body>
-        <jsp:include page="cabecalho.jsp"></jsp:include>
+        <jsp:include page="cabecalho.jsp" />        
         <section>
             <div class="container">
-                <h1>Hello ${usuario.login}!</h1>
+                <h2>Olá ${usuario.login}!</h2>
+
+                <hr class="quebraLinhaIndex"/>
+
+                <c:if test="${not empty motoristaUsuario or not empty passageiroUsuario}">
+                    <p>Você tem uma carona ativa!</p>
+                    <div class="col-md-6">
+                        <div class="row">
+                            <label>Data:</label>
+                            <span>${caronaAtiva.dataHorario}</span>
+                        </div>
+                        <div class="row">
+                            <label>Local de partida</label>
+                            <span>${caronaAtiva.localPartida}</span>
+                        </div>
+                    </div>
+                </c:if>                    
+
             </div>
-        </section>        
+        </section>
     </body>
 </html>

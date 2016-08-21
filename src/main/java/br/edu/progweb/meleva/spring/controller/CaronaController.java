@@ -7,6 +7,7 @@ package br.edu.progweb.meleva.spring.controller;
 
 import br.edu.progweb.meleva.entidades.Carona;
 import br.edu.progweb.meleva.entidades.Motorista;
+import br.edu.progweb.meleva.entidades.Passageiro;
 import br.edu.progweb.meleva.entidades.Usuario;
 import br.edu.progweb.meleva.facade.MeLevaFacadeInterface;
 import java.util.List;
@@ -17,6 +18,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 /**
  *
@@ -56,10 +58,30 @@ public class CaronaController {
         Usuario u = (Usuario) session.getAttribute("usuario");
         Motorista m = new Motorista();
         m.setIdUsuario(u);
+        m.setAtivo(Boolean.TRUE);
         meLevaFacade.criarMotorista(m);
         u.getMotoristaList().add(m);
-        c.setIdMotorista(m);
+        c.setIdMotorista(m);        
+        c.setAtivo(Boolean.TRUE);
         meLevaFacade.criarCarona(c, u);
         return "projeto/carona";
+    }
+
+    @Transactional
+    @RequestMapping(value = "projeto/caronaTeste", method = RequestMethod.POST)
+    public String testeCarona(HttpServletRequest request, @RequestParam("teste") Integer idCarona) {
+        HttpSession session = request.getSession();
+        Usuario u = (Usuario)session.getAttribute("usuario");
+        Carona carona = meLevaFacade.caronaPeloId(idCarona);
+        Passageiro pass = new Passageiro();
+        pass.setIdUsuario(u);
+        pass.setIdCarona(carona);
+        pass.setAtivo(Boolean.TRUE);
+        meLevaFacade.criarPassageiro(pass);
+        u.getPassageiroList().add(pass);
+        carona.getPassageiroList().add(pass);
+        
+        return "redirect:listarCarona";
+
     }
 }

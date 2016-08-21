@@ -13,10 +13,10 @@
         <title>MeLeva</title>
     </head>
     <body>
-        <jsp:include page="cabecalho.jsp"></jsp:include>
-            <section>
-                <div class="container">
-                    <div class="well">
+        <jsp:include page="cabecalho.jsp" />
+        <section>
+            <div class="container">
+                <div class="well">
                     <c:set var="teste" value="${usuarioMsg}" />
                     <p id="usuMsg">${usuarioMsg}</p>
                     <form class="form-group" method="POST" action="criarCarona">

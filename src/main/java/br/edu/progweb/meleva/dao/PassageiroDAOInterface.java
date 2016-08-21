@@ -5,19 +5,14 @@
  */
 package br.edu.progweb.meleva.dao;
 
-import br.edu.progweb.meleva.entidades.Carona;
-import java.util.List;
+import br.edu.progweb.meleva.entidades.Passageiro;
 
 /**
  *
  * @author shu
  */
-public interface CaronaDAOInterface {
+public interface PassageiroDAOInterface {
     
-    public List<Carona> listarCarona();
-    
-    public void criarCarona(Carona c);
-    
-    public Carona caronaPeloId(Integer id);
+    public void criarPassageiro(Passageiro p);
     
 }

@@ -9,6 +9,7 @@ import br.edu.progweb.meleva.entidades.Carona;
 import br.edu.progweb.meleva.entidades.Carro;
 import br.edu.progweb.meleva.entidades.InfoUsuario;
 import br.edu.progweb.meleva.entidades.Motorista;
+import br.edu.progweb.meleva.entidades.Passageiro;
 import br.edu.progweb.meleva.entidades.Usuario;
 import java.util.List;
 
@@ -31,4 +32,8 @@ public interface MeLevaFacadeInterface {
     public InfoUsuario atualizarInfoUsuario(InfoUsuario iu);
     
     public void criarMotorista(Motorista m);
+    
+    public Carona caronaPeloId(Integer id);
+    
+    public void criarPassageiro(Passageiro p);
 }

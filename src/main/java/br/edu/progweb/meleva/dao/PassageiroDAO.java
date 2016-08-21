@@ -5,8 +5,7 @@
  */
 package br.edu.progweb.meleva.dao;
 
-import br.edu.progweb.meleva.entidades.Carona;
-import java.util.List;
+import br.edu.progweb.meleva.entidades.Passageiro;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import org.springframework.stereotype.Repository;
@@ -16,24 +15,14 @@ import org.springframework.stereotype.Repository;
  * @author shu
  */
 @Repository
-public class CaronaDAO implements CaronaDAOInterface {
-
+public class PassageiroDAO implements PassageiroDAOInterface {
+    
     @PersistenceContext
     private EntityManager manager;
 
     @Override
-    public void criarCarona(Carona c) {
-        manager.persist(c);
+    public void criarPassageiro(Passageiro p) {
+        manager.persist(p);        
     }
-
-    @Override
-    public List<Carona> listarCarona() {
-        return manager.createNamedQuery("Carona.findAll").getResultList();
-    }
-
-    @Override
-    public Carona caronaPeloId(Integer id) {
-        return manager.find(Carona.class, id);
-    }
-
+    
 }

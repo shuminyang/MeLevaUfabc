@@ -61,3 +61,22 @@ html {
     color: #837c7c;
     background-color: #d8d8d8;
 }
+
+hr {
+    border-top: 1px solid #ccc8c8;
+}
+
+hr.quebraLinhaIndex {
+    text-align: center;
+}
+
+hr.quebraLinhaIndex:after {
+    content:"\f1b9";
+    display: inline-block;
+    position: relative;
+    top: -2.1em;
+    font-size: 1.15em;
+    padding: 19px 1.75em;
+    font-family: FontAwesome;
+    background: #fff no-repeat scroll center;    
+}
