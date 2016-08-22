@@ -6,11 +6,9 @@
 package br.edu.progweb.meleva.entidades;
 
 import java.io.Serializable;
-import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -18,11 +16,9 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
-import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
-import javax.validation.constraints.NotNull;
 import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
@@ -33,23 +29,24 @@ import javax.xml.bind.annotation.XmlTransient;
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Motorista.findAll", query = "SELECT m FROM Motorista m"),
-    @NamedQuery(name = "Motorista.findById", query = "SELECT m FROM Motorista m WHERE m.id = :id")})
+    @NamedQuery(name = "Motorista.findById", query = "SELECT m FROM Motorista m WHERE m.id = :id"),
+    @NamedQuery(name = "Motorista.findByAtivo", query = "SELECT m FROM Motorista m WHERE m.ativo = :ativo")})
 public class Motorista implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
-    @Basic(optional = false)
-    @NotNull
-    @Column(name = "ID")
     @GeneratedValue(strategy = GenerationType.AUTO)
+    @Basic(optional = false)
+    @Column(name = "id")
     private Integer id;
-    @OneToMany(mappedBy = "idMotorista", fetch = FetchType.EAGER)
-    private List<Carona> caronaList;
     @Column(name = "ATIVO")
     private Boolean ativo;
     @JoinColumn(name = "ID_USUARIO", referencedColumnName = "ID")
     @ManyToOne
     private Usuario idUsuario;
+    @JoinColumn(name = "id", referencedColumnName = "ID", insertable = false, updatable = false)
+    @OneToOne(optional = false)
+    private Carona carona;
 
     public Motorista() {
     }
@@ -66,13 +63,12 @@ public class Motorista implements Serializable {
         this.id = id;
     }
 
-    @XmlTransient
-    public List<Carona> getCaronaList() {
-        return caronaList;
+    public Boolean getAtivo() {
+        return ativo;
     }
 
-    public void setCaronaList(List<Carona> caronaList) {
-        this.caronaList = caronaList;
+    public void setAtivo(Boolean ativo) {
+        this.ativo = ativo;
     }
 
     public Usuario getIdUsuario() {
@@ -81,6 +77,14 @@ public class Motorista implements Serializable {
 
     public void setIdUsuario(Usuario idUsuario) {
         this.idUsuario = idUsuario;
+    }
+
+    public Carona getCarona() {
+        return carona;
+    }
+
+    public void setCarona(Carona carona) {
+        this.carona = carona;
     }
 
     @Override
@@ -107,13 +111,5 @@ public class Motorista implements Serializable {
     public String toString() {
         return "br.edu.progweb.meleva.entidades.Motorista[ id=" + id + " ]";
     }
-
-    public Boolean getAtivo() {
-        return ativo;
-    }
-
-    public void setAtivo(Boolean ativo) {
-        this.ativo = ativo;
-    }    
-
+    
 }

@@ -17,42 +17,54 @@
         <section>
             <div class="container">
 
+                <c:if test="${not empty mensagemCarona}" >
+                    <div class="alert alert-danger">
+                        <h5 class="text-center text-danger"><i class="fa-exclamation-circle fa">${mensagemCarona}</i></h5>
+                    </div>
+                    <hr>
+                </c:if>
+
+
                 <c:forEach var="carona" items="${listaCarona}" >
-                    <!--                    <a href="#" class="caronaLink">-->
-                    <div class="col-md-4 well-sm well">
+                    <div class="col-md-6 well-sm well">
                         <div class="row">
-                            <i class="col-md-6 fa fa-user fa-fw well-sm well">${carona.idMotorista.idUsuario.infoUsuario.nome}</i>
+                            <label class="col-md-8">Motorista: </label>
+                            <span class="col-md-4 text-info">${carona.motorista.idUsuario.infoUsuario.nome}</span>
                         </div>
                         <div class="row">
-                            <label for="localPartida" class="col-md-8">Local de partida:</label>
-                            <span id="localPartida" class="col-md-4 text-info" name="localPartida">${carona.localPartida}</span>
+                            <label class="col-md-8">Local de partida:</label>
+                            <span class="col-md-4 text-info" name="localPartida">${carona.localPartida}</span>
                         </div>
                         <div class="row">
-                            <label for="localChegada" class="col-md-8">Local de chegada:</label>
-                            <span id="localChegada" class="col-md-4 text-info">${carona.localChegada}</span>
+                            <label class="col-md-8">Local de chegada:</label>
+                            <span class="col-md-4 text-info">${carona.localChegada}</span>
                         </div>
                         <div class="row">
-                            <label for="dataHorario" class="col-md-8">Data de partida:</label>
-                            <span id="dataHorario" class="col-md-4 text-info">${carona.dataHorario}</span>
+                            <label class="col-md-8">Data de partida:</label>
+                            <span class="col-md-4 text-info">${carona.dataHorario}</span>
                         </div>
                         <div class="row">
-                            <label for="horarioChegada" class="col-md-8">Horario de chegada:</label>
-                            <span id="horarioChegada" class="col-md-4 text-info">${carona.horarioChegada}</span>
+                            <label class="col-md-8">Horario de chegada:</label>
+                            <span class="col-md-4 text-info">${carona.horarioChegada}</span>
                         </div>
                         <div class="row">
-                            <label for="custos" class="col-md-8">Custos:</label>
-                            <span id="custos" class="col-md-4 text-info">${carona.custos}</span>                            
+                            <label class="col-md-8">Custos:</label>
+                            <span class="col-md-4 text-info">${carona.custos}</span>                            
                         </div>
                         <div class="row">
-                            <label for="lugares" class="col-md-8">Lugares:</label>
-                            <span id="lugares" class="col-md-4 text-info">${carona.NLugares}</span>
+                            <label class="col-md-8">Lugares:</label>
+                            <span class="col-md-4 text-info">${carona.NLugares}</span>
                         </div>
-                        <form action="caronaTeste" method="POST">
-                            <input type="hidden" id="teste" name="teste" value="${carona.id}" >
-                            <button type="submit" class="btn btn-info" ></button>
-                        </form>
-                    </div>                        
-                    <!--</a>-->
+
+                        <div class="col-md-8 col-md-offset-8">
+                            <form action="caronaTeste" method="POST">
+                                <input type="hidden" id="teste" name="teste" value="${carona.id}" >
+                                <!--<button type="submit" class="btn btn-info" ></button>-->
+                                <button type="submit" class="btn btn-info">Pega carona!</button>
+                            </form>
+                        </div>
+
+                    </div>
                 </c:forEach>
 
             </div>

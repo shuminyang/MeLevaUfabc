@@ -33,9 +33,9 @@
                         </div>
                     </div>
                 </c:if>
-                <c:if test="${empty motoristaUsuario or empty passageiroUsuario}" >
-                    <p class="text-center text-muted">Você não possui caronas! Crie uma ou procure uma!</p>
-                </c:if>
+                <%--<c:if test="${empty motoristaUsuario or empty passageiroUsuario}" >--%>
+                    <!--<p class="text-center text-muted">Você não possui caronas! Crie ou procure uma!</p>-->
+                <%--</c:if>--%>
 
             </div>
         </section>

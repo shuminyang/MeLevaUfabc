@@ -20,4 +20,6 @@ public interface CaronaDAOInterface {
     
     public Carona caronaPeloId(Integer id);
     
+    public Carona desativarCarona(Carona c);
+    
 }

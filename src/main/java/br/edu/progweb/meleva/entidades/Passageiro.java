@@ -17,7 +17,6 @@ import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
-import javax.validation.constraints.NotNull;
 import javax.xml.bind.annotation.XmlRootElement;
 
 /**
@@ -29,24 +28,24 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Passageiro.findAll", query = "SELECT p FROM Passageiro p"),
-    @NamedQuery(name = "Passageiro.findById", query = "SELECT p FROM Passageiro p WHERE p.id = :id")})
+    @NamedQuery(name = "Passageiro.findById", query = "SELECT p FROM Passageiro p WHERE p.id = :id"),
+    @NamedQuery(name = "Passageiro.findByAtivo", query = "SELECT p FROM Passageiro p WHERE p.ativo = :ativo")})
 public class Passageiro implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
-    @NotNull
-    @Column(name = "ID")
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "id")
     private Integer id;
-    @JoinColumn(name = "ID_CARONA", referencedColumnName = "ID")
-    @ManyToOne
-    private Carona idCarona;
     @Column(name = "ATIVO")
     private Boolean ativo;
     @JoinColumn(name = "ID_USUARIO", referencedColumnName = "ID")
     @ManyToOne
     private Usuario idUsuario;
+    @JoinColumn(name = "ID_CARONA", referencedColumnName = "ID")
+    @ManyToOne
+    private Carona idCarona;
 
     public Passageiro() {
     }
@@ -63,12 +62,12 @@ public class Passageiro implements Serializable {
         this.id = id;
     }
 
-    public Carona getIdCarona() {
-        return idCarona;
+    public Boolean getAtivo() {
+        return ativo;
     }
 
-    public void setIdCarona(Carona idCarona) {
-        this.idCarona = idCarona;
+    public void setAtivo(Boolean ativo) {
+        this.ativo = ativo;
     }
 
     public Usuario getIdUsuario() {
@@ -77,6 +76,14 @@ public class Passageiro implements Serializable {
 
     public void setIdUsuario(Usuario idUsuario) {
         this.idUsuario = idUsuario;
+    }
+
+    public Carona getIdCarona() {
+        return idCarona;
+    }
+
+    public void setIdCarona(Carona idCarona) {
+        this.idCarona = idCarona;
     }
 
     @Override
@@ -103,12 +110,5 @@ public class Passageiro implements Serializable {
     public String toString() {
         return "br.edu.progweb.meleva.entidades.Passageiro[ id=" + id + " ]";
     }
-
-    public Boolean getAtivo() {
-        return ativo;
-    }
-
-    public void setAtivo(Boolean ativo) {
-        this.ativo = ativo;
-    }
+    
 }

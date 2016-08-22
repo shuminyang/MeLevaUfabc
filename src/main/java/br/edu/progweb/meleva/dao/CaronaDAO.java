@@ -36,4 +36,11 @@ public class CaronaDAO implements CaronaDAOInterface {
         return manager.find(Carona.class, id);
     }
 
+    @Override
+    public Carona desativarCarona(Carona c) {
+        Carona ca = manager.find(Carona.class, c.getId());
+        ca.setAtivo(Boolean.FALSE);
+        return ca;
+    }
+
 }

@@ -24,6 +24,7 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
+import org.codehaus.jackson.annotate.JsonIgnore;
 
 /**
  *
@@ -41,15 +42,18 @@ public class Usuario implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
     @Column(name = "ID")
-    @NotNull
     private Integer id;
-    @Size(max = 255)
+    @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 255)
     @Column(name = "LOGIN")
     private String login;
-    @Size(max = 255)
+    @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 255)
     @Column(name = "SENHA")
     private String senha;
     @OneToOne(cascade = CascadeType.ALL, mappedBy = "usuario")
@@ -58,7 +62,7 @@ public class Usuario implements Serializable {
     private List<Passageiro> passageiroList;
     @OneToMany(mappedBy = "idUsuario", fetch = FetchType.EAGER)
     private List<Motorista> motoristaList;
-    @OneToMany(mappedBy = "idUsuario", fetch = FetchType.EAGER)
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idUsuario", fetch = FetchType.EAGER)
     private List<Carro> carroList;
 
     public Usuario() {
@@ -66,6 +70,12 @@ public class Usuario implements Serializable {
 
     public Usuario(Integer id) {
         this.id = id;
+    }
+
+    public Usuario(Integer id, String login, String senha) {
+        this.id = id;
+        this.login = login;
+        this.senha = senha;
     }
 
     public Integer getId() {
@@ -101,6 +111,7 @@ public class Usuario implements Serializable {
     }
 
     @XmlTransient
+    @JsonIgnore
     public List<Passageiro> getPassageiroList() {
         return passageiroList;
     }
@@ -110,6 +121,7 @@ public class Usuario implements Serializable {
     }
 
     @XmlTransient
+    @JsonIgnore
     public List<Motorista> getMotoristaList() {
         return motoristaList;
     }
@@ -119,6 +131,7 @@ public class Usuario implements Serializable {
     }
 
     @XmlTransient
+    @JsonIgnore
     public List<Carro> getCarroList() {
         return carroList;
     }

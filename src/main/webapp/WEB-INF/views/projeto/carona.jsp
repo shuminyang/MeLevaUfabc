@@ -18,7 +18,7 @@
             <div class="container">
                 <div class="well">
                     <c:set var="teste" value="${usuarioMsg}" />
-                    <p id="usuMsg">${usuarioMsg}</p>
+                    <p id="usuMsg" class="text-center text-danger">${usuarioMsg}</p>
                     <form class="form-group" method="POST" action="criarCarona">
                         <div class="row">
                             <div class="col-md-5">

@@ -25,4 +25,12 @@ public class MotoristaDAO implements MotoristaDAOInterface {
         manager.persist(m);
     }
 
+    @Override
+    public Motorista atualizarMotorista(Motorista m) {
+        Motorista mo = manager.find(Motorista.class, m.getId());
+        mo.setAtivo(m.getAtivo());
+        mo.setIdUsuario(m.getIdUsuario());
+        return mo;
+    }
+
 }

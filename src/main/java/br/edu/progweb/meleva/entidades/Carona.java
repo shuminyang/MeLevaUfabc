@@ -9,23 +9,22 @@ import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
+import org.codehaus.jackson.annotate.JsonIgnore;
 
 /**
  *
@@ -48,7 +47,6 @@ public class Carona implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
     @Column(name = "ID")
     private Integer id;
@@ -61,21 +59,20 @@ public class Carona implements Serializable {
     @Column(name = "LOCAL_CHEGADA")
     private String localChegada;
     @Column(name = "DATA_HORARIO")
-    @Temporal(TemporalType.DATE)
+    @Temporal(TemporalType.TIMESTAMP)
     private Date dataHorario;
     @Size(max = 255)
     @Column(name = "CUSTOS")
     private String custos;
     @Column(name = "HORARIO_CHEGADA")
-    @Temporal(TemporalType.DATE)
+    @Temporal(TemporalType.TIMESTAMP)
     private Date horarioChegada;
     @Column(name = "ATIVO")
     private Boolean ativo;
-    @JoinColumn(name = "ID_MOTORISTA", referencedColumnName = "ID")
-    @ManyToOne
-    private Motorista idMotorista;
     @OneToMany(mappedBy = "idCarona", fetch = FetchType.EAGER)
     private List<Passageiro> passageiroList;
+    @OneToOne(cascade = CascadeType.ALL, mappedBy = "carona")
+    private Motorista motorista;
 
     public Carona() {
     }
@@ -148,21 +145,22 @@ public class Carona implements Serializable {
         this.ativo = ativo;
     }
 
-    public Motorista getIdMotorista() {
-        return idMotorista;
-    }
-
-    public void setIdMotorista(Motorista idMotorista) {
-        this.idMotorista = idMotorista;
-    }
-
     @XmlTransient
+    @JsonIgnore
     public List<Passageiro> getPassageiroList() {
         return passageiroList;
     }
 
     public void setPassageiroList(List<Passageiro> passageiroList) {
         this.passageiroList = passageiroList;
+    }
+
+    public Motorista getMotorista() {
+        return motorista;
+    }
+
+    public void setMotorista(Motorista motorista) {
+        this.motorista = motorista;
     }
 
     @Override

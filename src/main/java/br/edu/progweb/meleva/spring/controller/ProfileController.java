@@ -41,6 +41,9 @@ public class ProfileController {
         for (Motorista mot : u.getMotoristaList()) {
             if (mot.getAtivo()) {
                 m = mot;
+                if (m.getCarona().getAtivo()) {
+                    c = m.getCarona();
+                }
             }
         }
         if (m == null) {
@@ -51,12 +54,6 @@ public class ProfileController {
             }
             if (p != null) {
                 c = p.getIdCarona();
-            }
-        } else {
-            for (Carona car : m.getCaronaList()) {
-                if (car.getAtivo()) {
-                    c = car;
-                }
             }
         }
         request.setAttribute("caronaAtiva", c);
@@ -89,7 +86,7 @@ public class ProfileController {
         request.setAttribute("usuarioInfo", u.getInfoUsuario());
         request.setAttribute("usuarioCarros", u.getCarroList());
         request.setAttribute("usuarioPassageiro", u.getPassageiroList());
-        request.setAttribute("usuarioMotorista", u.getMotoristaList());        
+        request.setAttribute("usuarioMotorista", u.getMotoristaList());
         return "projeto/profile";
     }
 

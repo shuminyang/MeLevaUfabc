@@ -19,7 +19,10 @@
                 <div class="well well-sm col-md-7 col-md-offset-3 row" >
 
                     <c:if test="${empty usuarioCarros}">
-                        <h5>Você não possui carros!</h5>                        
+                        <div class="alert alert-danger">
+                            <h5 class="text-center text-danger"><i class="fa fa-exclamation-circle"> Você não possui carros!</i></h5>
+                        </div>
+                        <hr>
                     </c:if>
 
                     <c:if test="${not empty usuarioCarros}">

@@ -80,7 +80,7 @@ public class MeLevaFacade implements MeLevaFacadeInterface {
     }
 
     @Override
-    public void criarCarona(Carona c, Usuario u) {
+    public void criarCarona(Carona c, Usuario u) {        
         caronaDao.criarCarona(c);
 //        u.setIdCarona(c);
         u = usuarioDao.atualizarUsuario(u);
@@ -114,6 +114,12 @@ public class MeLevaFacade implements MeLevaFacadeInterface {
     @Override
     public Passageiro atualizarPassageiro(Passageiro p) {
         return passageiroDao.atualizarPassageiro(p);
+    }
+
+    @Override
+    public Motorista atualizarMotorista(Motorista m) {
+        Carona c = caronaDao.desativarCarona(m.getCarona());
+        return motoristaDao.atualizarMotorista(m);
     }
 
 }

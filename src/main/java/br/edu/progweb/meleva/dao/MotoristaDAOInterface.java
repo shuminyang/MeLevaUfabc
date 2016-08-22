@@ -15,4 +15,6 @@ public interface MotoristaDAOInterface {
     
     public void criarMotorista(Motorista m);
     
+    public Motorista atualizarMotorista(Motorista m);
+    
 }

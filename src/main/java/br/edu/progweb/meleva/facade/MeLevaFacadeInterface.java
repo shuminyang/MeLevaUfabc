@@ -38,4 +38,6 @@ public interface MeLevaFacadeInterface {
     public void criarPassageiro(Passageiro p);
     
     public Passageiro atualizarPassageiro(Passageiro p);
+    
+    public Motorista atualizarMotorista(Motorista m);
 }
