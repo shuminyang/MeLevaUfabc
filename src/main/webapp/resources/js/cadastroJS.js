@@ -11,19 +11,27 @@ $(document).ready(function () {
         $.ajax(form.attr('action'), {
             type: 'POST',
             data: form.serialize(),
-            success: function(result) {
-                
+            success: function (result) {
                 if (result["cadastrado"] === true) {
-                    console.log('asd');
                     form.remove();
                     var msg = $('<p></p>');
                     msg.append(result["mensagem"]);
-                    msg.addClass('alert alert-success');
-                    $('section').children('.container').html(msg).fadeIn();                    
-                } else {
-                    
+                    msg.addClass('alert alert-success row');
+                    $('hr').append(msg).fadeIn();
                 }
             }
+//            ,
+//            error: function (result, outroResultado) {
+//                var msg = $('<p></p>');
+//                msg.append("Erro durante o cadastro!");
+//                msg.addClass('alert alert-danger');
+//                $('hr').append(msg).fadeIn();                
+//                $('button').children().removeClass('fa-spin');
+//            }
+
         });
+    });
+    $('button').on('click', function () {
+        $(this).children().addClass('fa-spin');
     });
 });

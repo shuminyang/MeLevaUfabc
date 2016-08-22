@@ -70,7 +70,7 @@ public class LoginController {
     @RequestMapping(value = "cadastraUsuario", method = RequestMethod.POST, produces = "application/json")
     @ResponseBody
     public CadastroControl criarConta(@ModelAttribute Usuario u, @ModelAttribute InfoUsuario iu, HttpServletRequest request, HttpServletResponse response) {
-        CadastroControl rc = new CadastroControl();
+        CadastroControl rc = new CadastroControl();        
         if (u != null && iu != null) {
 
             iu.setUsuario(u);

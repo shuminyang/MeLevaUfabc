@@ -20,7 +20,7 @@
         <header class="navbar navbar-default navbar-static-top" >
             <nav class="container">
                 <div class="navbar-header">
-                    <a href="#" class="navbar-brand"><i class="fa fa-car">  MeLeva</i></a>
+                    <a href="${pageContext.request.contextPath}/login" class="navbar-brand"><i class="fa fa-car">  MeLeva</i></a>
                 </div>
                 <ul class="nav navbar-nav navbar-right" >
                     <li><a href="${pageContext.request.contextPath}/login">Login</a></li>

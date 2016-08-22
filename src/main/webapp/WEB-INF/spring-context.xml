@@ -24,6 +24,11 @@
             <mvc:mapping path="/projeto/*" />
             <bean class="br.edu.progweb.meleva.spring.interceptador.InterceptadorLogin" />             
         </mvc:interceptor>
+        <mvc:interceptor>
+            <mvc:mapping path="/login" />
+            <mvc:mapping path="/cadastro" />
+            <bean class="br.edu.progweb.meleva.spring.interceptador.InterceptadorMultiploLogin"/>
+        </mvc:interceptor>
     </mvc:interceptors>
     
     <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">

@@ -16,38 +16,42 @@
         <jsp:include page="cabecalho.jsp" ></jsp:include>
             <section>
                 <div class="container">
-                <c:if test="${not empty loginMsg}" >
-                    <div class="row">
-                        <div class="alert alert-danger col-md-4 col-md-offset-4">
-                             <span><i class="fa-exclamation-circle fa">  ${loginMsg}</i></span>
-                        </div>
-                    </div>
-                </c:if>
+                    <div class="well well-sm col-md-7 col-md-offset-3">
 
+                        <h3 class="text-center text-muted">Login</h3>
+                        <hr class="dotted" />
 
-                <form action="login" method="POST">
-                    <div class="row form-group">
-                        <div class="col-md-4 input-group col-md-offset-4">
-                            <span class="input-group-addon"><i class="fa fa-user fa-fw"></i></span>
-                            <input type="text" class="form-control" id="login" name="login" placeholder="LOGIN" />
+                    <c:if test="${not empty loginMsg}" >
+                        <div class="row">
+                            <div class="alert alert-danger col-md-10 col-md-offset-1">
+                                <span><i class="fa-exclamation-circle fa">  ${loginMsg}</i></span>
+                            </div>
                         </div>
-                    </div>
-                    <div class="row form-group">
-                        <div class="col-md-4 input-group col-md-offset-4">
-                            <span for="senha" class="input-group-addon"><i class="fa fa-key fa-fw"></i></span>
-                            <input type="password" class="form-control" id="senha" name="senha" placeholder="SENHA" />
-                        </div>                        
-                    </div>
-                    <div class="row form-group">
-                        <div class="col-md-3 col-md-offset-4" >
-                            <span>Esqueceu a senha?! <a href="#">Clique aqui!</a></span>
-                            <span>Novo usuário? <a href="${pageContext.request.contextPath}/cadastro">Nova conta!</a></span>
+                    </c:if>
+                    <form action="login" method="POST">
+                        <div class="row form-group">
+                            <div class="col-md-10 input-group col-md-offset-1">
+                                <span class="input-group-addon"><i class="fa fa-user fa-fw"></i></span>
+                                <input type="text" class="form-control" id="login" name="login" placeholder="LOGIN" />
+                            </div>
                         </div>
-                        <div class="col-md-3 ">
-                            <button type="submit" class="btn btn-info btn-sm"><i class="fa fa-sign-in fa-2x"></i></button>
+                        <div class="row form-group">
+                            <div class="col-md-10 input-group col-md-offset-1">
+                                <span for="senha" class="input-group-addon"><i class="fa fa-key fa-fw"></i></span>
+                                <input type="password" class="form-control" id="senha" name="senha" placeholder="SENHA" />
+                            </div>                        
                         </div>
-                    </div>
-                </form>
+                        <div class="row form-group">
+                            <div class="col-md-7 col-md-offset-1" >
+                                <span style="display: block;">Esqueceu a senha?! <a href="#">Clique aqui!</a></span>
+                                <span style="display: block;">Novo usuário? <a href="${pageContext.request.contextPath}/cadastro">Nova conta!</a></span>
+                            </div>
+                            <div class="col-md-2 col-md-offset-1">
+                                <button type="submit" class="btn btn-info btn-sm"><i class="fa fa-sign-in fa-2x"></i></button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
 
             </div>
         </section>        

@@ -88,6 +88,8 @@ public class ProfileController {
         request.setAttribute("usuario", u);
         request.setAttribute("usuarioInfo", u.getInfoUsuario());
         request.setAttribute("usuarioCarros", u.getCarroList());
+        request.setAttribute("usuarioPassageiro", u.getPassageiroList());
+        request.setAttribute("usuarioMotorista", u.getMotoristaList());        
         return "projeto/profile";
     }
 

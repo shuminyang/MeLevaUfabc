@@ -80,3 +80,11 @@ hr.quebraLinhaIndex:after {
     font-family: FontAwesome;
     background: #fff no-repeat scroll center;    
 }
+
+hr.dotted {
+    border: none;
+    border-top: 1px dotted #ccc8c8;
+    color: #fff;
+    height:1px;
+    width:50%;
+}

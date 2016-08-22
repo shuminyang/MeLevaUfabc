@@ -36,6 +36,17 @@ public class CaronaController {
         Usuario u = (Usuario) session.getAttribute("usuario");
         if (u.getCarroList() == null || u.getCarroList().isEmpty()) {
             request.setAttribute("usuarioMsg", "Você não possui carro! Não é possível criar uma carona sem carro!");
+        } else if (u.getMotoristaList() != null || u.getPassageiroList() != null) {
+            for (Motorista m : u.getMotoristaList()) {
+                if (m.getAtivo()) {
+                    request.setAttribute("usuarioMsg", "Você possui carona ativa!");
+                }
+            }
+            for (Passageiro p : u.getPassageiroList()) {
+                if (p.getAtivo()) {
+                    request.setAttribute("usuarioMsg", "Você possui carona ativa!");
+                }
+            }
         } else {
             request.setAttribute("usuarioMsg", "");
             request.setAttribute("carroLista", u.getCarroList());
@@ -61,7 +72,7 @@ public class CaronaController {
         m.setAtivo(Boolean.TRUE);
         meLevaFacade.criarMotorista(m);
         u.getMotoristaList().add(m);
-        c.setIdMotorista(m);        
+        c.setIdMotorista(m);
         c.setAtivo(Boolean.TRUE);
         meLevaFacade.criarCarona(c, u);
         return "projeto/carona";
@@ -71,7 +82,7 @@ public class CaronaController {
     @RequestMapping(value = "projeto/caronaTeste", method = RequestMethod.POST)
     public String testeCarona(HttpServletRequest request, @RequestParam("teste") Integer idCarona) {
         HttpSession session = request.getSession();
-        Usuario u = (Usuario)session.getAttribute("usuario");
+        Usuario u = (Usuario) session.getAttribute("usuario");
         Carona carona = meLevaFacade.caronaPeloId(idCarona);
         Passageiro pass = new Passageiro();
         pass.setIdUsuario(u);
@@ -80,8 +91,9 @@ public class CaronaController {
         meLevaFacade.criarPassageiro(pass);
         u.getPassageiroList().add(pass);
         carona.getPassageiroList().add(pass);
-        
-        return "redirect:listarCarona";
 
+        return "redirect:listarCarona";
     }
+    
+    
 }
