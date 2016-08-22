@@ -74,11 +74,26 @@ hr.quebraLinhaIndex:after {
     content:"\f1b9";
     display: inline-block;
     position: relative;
-    top: -2.1em;
-    font-size: 1.15em;
-    padding: 19px 1.75em;
+    top: -1em;
+    font-size: 1em;
+    padding: 1px 0.5em;
     font-family: FontAwesome;
     background: #fff no-repeat scroll center;    
+}
+
+hr.quebraLinhaCarona {
+    text-align: center;
+}
+
+hr.quebraLinhaCarona:after {
+    content:"\f1b9";
+    display: inline-block;
+    position: relative;
+    top: -1.5em;
+    font-size: 1em;
+    padding: 10px 1em;
+    font-family: FontAwesome;
+    background: #f5f5f5 no-repeat scroll center;    
 }
 
 hr.dotted {

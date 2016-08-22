@@ -41,11 +41,11 @@
                         <hr class="dotted"/>
                     </c:forEach>
 
-                    <button class="btn btn-info" id="adicionarRemover">Adicionar carro</button>
+                    <button class="btn btn-info col-md-offset-9" id="adicionarRemover">Adicionar carro</button>
                 </div>
 
 
-                <div class="well well-sm col-md-6 col-md-offset-4 row projeto-well " id="carroForm" style="display: none;">
+                <div class="well well-sm col-md-7 col-md-offset-3 row projeto-well " id="carroForm" style="display: none;">
                     <form method="POST" action="cadastrarCarro" class="form-group-sm form-inline">
                         <div class="row">
                             <div class="col-md-11">

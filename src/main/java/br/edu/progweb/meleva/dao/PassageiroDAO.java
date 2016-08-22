@@ -16,13 +16,22 @@ import org.springframework.stereotype.Repository;
  */
 @Repository
 public class PassageiroDAO implements PassageiroDAOInterface {
-    
+
     @PersistenceContext
     private EntityManager manager;
 
     @Override
     public void criarPassageiro(Passageiro p) {
-        manager.persist(p);        
+        manager.persist(p);
     }
-    
+
+    @Override
+    public Passageiro atualizarPassageiro(Passageiro p) {
+        Passageiro pa = manager.find(Passageiro.class, p.getId());
+        pa.setIdCarona(p.getIdCarona());
+        pa.setIdUsuario(p.getIdUsuario());
+        pa.setAtivo(p.getAtivo());
+        return pa;
+    }
+
 }

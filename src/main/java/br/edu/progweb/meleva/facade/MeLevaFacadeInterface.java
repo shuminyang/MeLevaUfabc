@@ -36,4 +36,6 @@ public interface MeLevaFacadeInterface {
     public Carona caronaPeloId(Integer id);
     
     public void criarPassageiro(Passageiro p);
+    
+    public Passageiro atualizarPassageiro(Passageiro p);
 }

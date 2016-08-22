@@ -111,4 +111,9 @@ public class MeLevaFacade implements MeLevaFacadeInterface {
         passageiroDao.criarPassageiro(p);
     }
 
+    @Override
+    public Passageiro atualizarPassageiro(Passageiro p) {
+        return passageiroDao.atualizarPassageiro(p);
+    }
+
 }

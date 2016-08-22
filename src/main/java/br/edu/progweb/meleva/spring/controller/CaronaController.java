@@ -11,6 +11,7 @@ import br.edu.progweb.meleva.entidades.Passageiro;
 import br.edu.progweb.meleva.entidades.Usuario;
 import br.edu.progweb.meleva.facade.MeLevaFacadeInterface;
 import java.util.List;
+import java.util.Objects;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,24 +31,37 @@ public class CaronaController {
     @Autowired
     private MeLevaFacadeInterface meLevaFacade;
 
+    @RequestMapping(value = "projeto/caronasAtivas", method = RequestMethod.GET)
+    public String caronasAtivas(HttpServletRequest request) {
+        HttpSession session = request.getSession();
+        Usuario u = (Usuario) session.getAttribute("usuario");
+        request.setAttribute("listaMotorista", u.getMotoristaList());
+        request.setAttribute("listaPassageiro", u.getPassageiroList());
+        return "projeto/caronasAtivas";
+    }
+
     @RequestMapping(value = "projeto/carona", method = RequestMethod.GET)
     public String carona(HttpServletRequest request) {
         HttpSession session = request.getSession();
         Usuario u = (Usuario) session.getAttribute("usuario");
+        boolean temAtivo = false;
         if (u.getCarroList() == null || u.getCarroList().isEmpty()) {
             request.setAttribute("usuarioMsg", "Você não possui carro! Não é possível criar uma carona sem carro!");
         } else if (u.getMotoristaList() != null || u.getPassageiroList() != null) {
             for (Motorista m : u.getMotoristaList()) {
                 if (m.getAtivo()) {
                     request.setAttribute("usuarioMsg", "Você possui carona ativa!");
+                    temAtivo = true;
                 }
             }
             for (Passageiro p : u.getPassageiroList()) {
                 if (p.getAtivo()) {
                     request.setAttribute("usuarioMsg", "Você possui carona ativa!");
+                    temAtivo = true;
                 }
             }
-        } else {
+        }
+        if (temAtivo == false) {
             request.setAttribute("usuarioMsg", "");
             request.setAttribute("carroLista", u.getCarroList());
         }
@@ -94,6 +108,21 @@ public class CaronaController {
 
         return "redirect:listarCarona";
     }
-    
-    
+
+    @RequestMapping(value = "projeto/passageiroAtualizar", method = RequestMethod.POST)
+    @Transactional
+    public String passageiroChegar(HttpServletRequest request, @RequestParam("idPass") Integer idPass) {
+        HttpSession session = request.getSession();
+        Usuario u = (Usuario) session.getAttribute("usuario");
+        for (Passageiro p : u.getPassageiroList()) {
+            if (Objects.equals(p.getId(), idPass)) {
+                p.setAtivo(Boolean.FALSE);
+                p = meLevaFacade.atualizarPassageiro(p);
+                request.setAttribute("passageiroAtualizado", "Carona atualizada com sucesso!");
+            }
+        }
+        return "projeto/caronasAtivas";
+
+    }
+
 }

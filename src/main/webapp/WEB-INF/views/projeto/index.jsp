@@ -21,7 +21,7 @@
                 <hr class="quebraLinhaIndex"/>
 
                 <c:if test="${not empty motoristaUsuario or not empty passageiroUsuario}">
-                    <p>Você tem uma carona ativa!</p>
+                    <p class="text-center">Você tem uma carona ativa!</p>
                     <div class="col-md-6">
                         <div class="row">
                             <label>Data:</label>
@@ -32,7 +32,10 @@
                             <span>${caronaAtiva.localPartida}</span>
                         </div>
                     </div>
-                </c:if>                    
+                </c:if>
+                <c:if test="${empty motoristaUsuario or empty passageiroUsuario}" >
+                    <p class="text-center text-muted">Você não possui caronas! Crie uma ou procure uma!</p>
+                </c:if>
 
             </div>
         </section>

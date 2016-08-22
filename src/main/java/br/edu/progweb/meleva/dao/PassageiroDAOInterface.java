@@ -15,4 +15,6 @@ public interface PassageiroDAOInterface {
     
     public void criarPassageiro(Passageiro p);
     
+    public Passageiro atualizarPassageiro(Passageiro p);
+    
 }

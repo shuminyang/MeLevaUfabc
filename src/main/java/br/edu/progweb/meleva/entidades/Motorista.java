@@ -114,6 +114,6 @@ public class Motorista implements Serializable {
 
     public void setAtivo(Boolean ativo) {
         this.ativo = ativo;
-    }
+    }    
 
 }
