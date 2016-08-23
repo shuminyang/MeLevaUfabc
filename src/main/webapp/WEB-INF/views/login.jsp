@@ -43,7 +43,6 @@
                         </div>
                         <div class="row form-group">
                             <div class="col-md-7 col-md-offset-1" >
-                                <span style="display: block;">Esqueceu a senha?! <a href="#">Clique aqui!</a></span>
                                 <span style="display: block;">Novo usuário? <a href="${pageContext.request.contextPath}/cadastro">Nova conta!</a></span>
                             </div>
                             <div class="col-md-2 col-md-offset-1">

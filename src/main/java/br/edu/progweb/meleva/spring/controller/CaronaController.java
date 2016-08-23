@@ -12,6 +12,8 @@ import br.edu.progweb.meleva.entidades.Usuario;
 import br.edu.progweb.meleva.facade.MeLevaFacadeInterface;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 import java.util.Objects;
 import javax.servlet.http.HttpServletRequest;
@@ -51,30 +53,26 @@ public class CaronaController {
         if (u.getCarroList() == null || u.getCarroList().isEmpty()) {
             request.setAttribute("usuarioMsg", "Você não possui carro! Não é possível criar uma carona sem carro!");
             temAtivo = true;
-            System.out.println("1");
         } else if (u.getMotoristaList() != null || u.getPassageiroList() != null) {
             for (Motorista m : u.getMotoristaList()) {
                 if (m.getAtivo()) {
                     request.setAttribute("usuarioMsg", "Você possui carona ativa!");
                     temAtivo = true;
-                    System.out.println("2");
                 }
-                
+
             }
-            
+
             for (Passageiro p : u.getPassageiroList()) {
                 if (p.getAtivo()) {
                     request.setAttribute("usuarioMsg", "Você possui carona ativa!");
                     temAtivo = true;
-                    System.out.println("3");
                 }
-                
+
             }
         }
         if (temAtivo == false) {
             request.setAttribute("usuarioMsg", "");
             request.setAttribute("carroLista", u.getCarroList());
-            System.out.println("4");
         }
 
         return "projeto/carona";
@@ -89,6 +87,7 @@ public class CaronaController {
                 listaAtualizada.add(c);
             }
         }
+        System.out.println(listaAtualizada.size());
 
         request.setAttribute("listaCarona", listaAtualizada);
         return "projeto/listarCarona";
@@ -96,7 +95,7 @@ public class CaronaController {
 
     @RequestMapping(value = "projeto/criarCarona", method = RequestMethod.POST)
     @Transactional
-    public String criarCarona(HttpServletRequest request, Carona c) {
+    public String criarCarona(HttpServletRequest request, Carona c, @RequestParam("chegada") String chegada, @RequestParam("partida") String partida) {
         HttpSession session = request.getSession();
         Usuario u = (Usuario) session.getAttribute("usuario");
         Motorista m = new Motorista();
@@ -108,9 +107,45 @@ public class CaronaController {
         c.setMotorista(m);
         c.setAtivo(Boolean.TRUE);
         c.setId(m.getId());
+
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(new Date());
+        calendar.clear(Calendar.HOUR_OF_DAY);
+        calendar.clear(Calendar.AM_PM);
+        calendar.clear(Calendar.MINUTE);
+        calendar.clear(Calendar.SECOND);
+        calendar.clear(Calendar.MILLISECOND);
+        Calendar calendar2 = Calendar.getInstance();
+        calendar2.setTime(new Date());
+        calendar2.clear(Calendar.HOUR_OF_DAY);
+        calendar2.clear(Calendar.AM_PM);
+        calendar2.clear(Calendar.MINUTE);
+        calendar2.clear(Calendar.SECOND);
+        calendar2.clear(Calendar.MILLISECOND);
+
+        String hh = partida.split(":")[0];
+        String mm = partida.split(":")[1];
+
+        calendar.add(Calendar.HOUR_OF_DAY, Integer.parseInt(hh) - 3);
+        calendar.add(Calendar.MINUTE, Integer.parseInt(mm));
+
+        Date newDate = calendar.getTime();
+
+        c.setDataHorario(newDate);
+
+        hh = chegada.split(":")[0];
+        mm = chegada.split(":")[1];
+
+        calendar2.add(Calendar.HOUR_OF_DAY, Integer.parseInt(hh) - 3);
+        calendar2.add(Calendar.MINUTE, Integer.parseInt(mm));
+
+        Date novoDate = calendar2.getTime();
+
+        c.setHorarioChegada(novoDate);
+
         meLevaFacade.criarCarona(c, u);
         carona(request);
-        return "projeto/carona";
+        return "redirect:carona";
     }
 
     @Transactional
@@ -142,7 +177,6 @@ public class CaronaController {
         } else {
 
             request.setAttribute("mensagemCarona", "Você já possui uma carona! Não é possível entrar em outra!");
-            System.out.println("oie");
 
         }
         listarCarona(request);
@@ -173,9 +207,22 @@ public class CaronaController {
         Usuario u = (Usuario) session.getAttribute("usuario");
         for (Motorista m : u.getMotoristaList()) {
             if (Objects.equals(m.getId(), idMot)) {
-                m.setAtivo(Boolean.FALSE);
-                m = meLevaFacade.atualizarMotorista(m);
-                request.setAttribute("mpAtualizado", "Carona atualizada com sucesso!");
+                Carona c = m.getCarona();
+                boolean passageiro = false;
+                for (Passageiro p : c.getPassageiroList()) {
+                    if (p.getAtivo()) {
+                        passageiro = true;
+                    }
+                }
+                if (!passageiro) {
+                    m.setAtivo(Boolean.FALSE);
+                    m = meLevaFacade.atualizarMotorista(m);
+                    request.setAttribute("mpAtualizado", "Carona atualizada com sucesso!");
+                } else {
+                    request.setAttribute("mpAtualizado", "Há passageiros na carona ainda, espere eles chegarem no local.");
+
+                }
+
             }
         }
         caronasAtivas(request);

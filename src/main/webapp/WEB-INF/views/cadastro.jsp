@@ -34,7 +34,7 @@
                             <div class="row form-group">
                                 <div class="col-md-10 input-group">
                                     <span class="input-group-addon cadastro-addon"><i class="fa fa-credit-card-alt"></i></span>
-                                    <input type="text" class="form-control" id="login" name="cpf" placeholder="CPF" />
+                                    <input type="text" class="form-control" id="login" name="cpf" placeholder="CPF(EX:nnn.nnn.nnn-nn)"/>
                                 </div>
                             </div>
                             <div class="row form-group">

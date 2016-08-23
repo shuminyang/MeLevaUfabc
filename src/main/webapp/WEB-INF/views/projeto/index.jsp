@@ -6,6 +6,7 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
     <head>
@@ -25,7 +26,7 @@
                     <div class="col-md-6">
                         <div class="row">
                             <label>Data:</label>
-                            <span>${caronaAtiva.dataHorario}</span>
+                            <span><fmt:formatDate type="both" timeStyle="short" value="${caronaAtiva.dataHorario}" /></span>
                         </div>
                         <div class="row">
                             <label>Local de partida</label>

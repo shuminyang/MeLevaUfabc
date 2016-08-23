@@ -83,7 +83,7 @@ public class ProfileController {
         HttpSession session = request.getSession();
         Usuario u = (Usuario) session.getAttribute("usuario");
         request.setAttribute("usuario", u);
-        request.setAttribute("usuarioInfo", u.getInfoUsuario());
+        request.setAttribute("usuarioInfo", u.getInfoUsuario());        
         request.setAttribute("usuarioCarros", u.getCarroList());
         request.setAttribute("usuarioPassageiro", u.getPassageiroList());
         request.setAttribute("usuarioMotorista", u.getMotoristaList());

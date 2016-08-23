@@ -58,13 +58,13 @@
                             <div class="col-md-5">
                                 <div class="input-group">
                                     <span class="input-group-addon"><i class="fa fa-calendar-check-o fa-fw"></i></span>
-                                    <input class="form-control" type="text" name="dataHorario" placeholder="DATA E HORARIO"/>
+                                    <input class="form-control" type="time" name="partida" placeholder="HH:MM:SS" pattern="^([0-1]?[0-9]|2[0-4]):([0-5][0-9])(:[0-5][0-9])?$"/>
                                 </div>
                             </div>
                             <div class="col-md-5 col-md-offset-1">
                                 <div class="input-group">
                                     <span class="input-group-addon"><i class="fa fa-clock-o fa-fw"></i></span>
-                                    <input class="form-control" type="text" name="horarioChegada" placeholder="HORARIO DE CHEGADA"/>
+                                    <input class="form-control" type="time" name="chegada" placeholder="HH:MM:SS" pattern="^([0-1]?[0-9]|2[0-4]):([0-5][0-9])(:[0-5][0-9])?$"/>
                                 </div>
                             </div>
                         </div>

@@ -95,11 +95,23 @@
                                 </div>
                             </div>
                             <div class="row">
+                                <div class="col-md-5">
+                                    <label>Passageiros:</label>
+                                    <span class="text-info">
+                                        <c:forEach var="passageiro" items="${motorista.carona.passageiroList}">
+                                            <c:if test="${passageiro.ativo}">
+                                                ${passageiro.idUsuario.infoUsuario.nome}
+                                            </c:if>
+                                        </c:forEach>
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="row">
                                 <c:if test="${motorista.ativo}">
                                     <div class="col-md-5">
                                         <form action="motoristaAtualizar" method="POST">
                                             <input type="hidden" value="${motorista.id}" name="idMot" />
-                                            <button class="btn btn-info">Cheguei no destino!</button>
+                                            <button class="btn btn-info">Fechar carona!</button>
                                         </form>
                                     </div>
                                 </c:if>

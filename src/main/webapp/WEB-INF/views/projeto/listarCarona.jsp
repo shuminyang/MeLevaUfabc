@@ -6,6 +6,7 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
     <head>
@@ -41,11 +42,11 @@
                         </div>
                         <div class="row">
                             <label class="col-md-8">Data de partida:</label>
-                            <span class="col-md-4 text-info">${carona.dataHorario}</span>
+                            <span class="col-md-4 text-info"><fmt:formatDate type="both" timeStyle="short" value="${carona.dataHorario}" /></span>
                         </div>
                         <div class="row">
                             <label class="col-md-8">Horario de chegada:</label>
-                            <span class="col-md-4 text-info">${carona.horarioChegada}</span>
+                            <span class="col-md-4 text-info"><fmt:formatDate type="both" timeStyle="short" value="${carona.horarioChegada}" /></span>
                         </div>
                         <div class="row">
                             <label class="col-md-8">Custos:</label>
@@ -57,11 +58,20 @@
                         </div>
 
                         <div class="col-md-8 col-md-offset-8">
-                            <form action="caronaTeste" method="POST">
-                                <input type="hidden" id="teste" name="teste" value="${carona.id}" >
-                                <!--<button type="submit" class="btn btn-info" ></button>-->
-                                <button type="submit" class="btn btn-info">Pega carona!</button>
-                            </form>
+
+
+                            <!--<button type="submit" class="btn btn-info" ></button>-->
+                            <c:if test="${carona.NLugares > 0}" >
+                                <form action="caronaTeste" method="POST">
+                                    <input type="hidden" id="teste" name="teste" value="${carona.id}" >
+                                    <button type="submit" class="btn btn-info">Pega carona!</button>
+                                </form>
+                            </c:if>
+                            <c:if test="${carona.NLugares  <= 0}" >
+                                <button type="submit" class="btn btn-info disabled">Sem lugar!</button>
+                            </c:if>
+
+
                         </div>
 
                     </div>
