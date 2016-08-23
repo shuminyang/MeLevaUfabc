@@ -72,7 +72,7 @@
                             <div class="col-md-5">
                                 <div class="input-group">
                                     <span class="input-group-addon"><i class="fa fa-money fa-fw"></i></span>
-                                    <input class="form-control" type="text" name="custos" placeholder="CUSTOS" />
+                                    <input class="form-control" type="text" name="custo" placeholder="CUSTOS" />
                                 </div>
                             </div>
                             <div class="col-md-3 col-md-offset-1" >

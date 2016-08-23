@@ -36,7 +36,7 @@ public class Passageiro implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
-    @Column(name = "id")
+    @Column(name = "ID")
     private Integer id;
     @Column(name = "ATIVO")
     private Boolean ativo;

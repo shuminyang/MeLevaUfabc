@@ -9,11 +9,13 @@ import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 import javax.persistence.Basic;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
@@ -36,43 +38,44 @@ import org.codehaus.jackson.annotate.JsonIgnore;
 @NamedQueries({
     @NamedQuery(name = "Carona.findAll", query = "SELECT c FROM Carona c"),
     @NamedQuery(name = "Carona.findById", query = "SELECT c FROM Carona c WHERE c.id = :id"),
-    @NamedQuery(name = "Carona.findByNLugares", query = "SELECT c FROM Carona c WHERE c.nLugares = :nLugares"),
     @NamedQuery(name = "Carona.findByLocalPartida", query = "SELECT c FROM Carona c WHERE c.localPartida = :localPartida"),
     @NamedQuery(name = "Carona.findByLocalChegada", query = "SELECT c FROM Carona c WHERE c.localChegada = :localChegada"),
+    @NamedQuery(name = "Carona.findByNLugares", query = "SELECT c FROM Carona c WHERE c.nLugares = :nLugares"),
     @NamedQuery(name = "Carona.findByDataHorario", query = "SELECT c FROM Carona c WHERE c.dataHorario = :dataHorario"),
-    @NamedQuery(name = "Carona.findByCustos", query = "SELECT c FROM Carona c WHERE c.custos = :custos"),
     @NamedQuery(name = "Carona.findByHorarioChegada", query = "SELECT c FROM Carona c WHERE c.horarioChegada = :horarioChegada"),
+    @NamedQuery(name = "Carona.findByCusto", query = "SELECT c FROM Carona c WHERE c.custo = :custo"),
     @NamedQuery(name = "Carona.findByAtivo", query = "SELECT c FROM Carona c WHERE c.ativo = :ativo")})
 public class Carona implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
     @Basic(optional = false)
-    @Column(name = "ID")
+    @Column(name = "ID")    
     private Integer id;
-    @Column(name = "N_LUGARES")
-    private Integer nLugares;
     @Size(max = 255)
     @Column(name = "LOCAL_PARTIDA")
     private String localPartida;
     @Size(max = 255)
     @Column(name = "LOCAL_CHEGADA")
     private String localChegada;
+    @Column(name = "N_LUGARES")
+    private Integer nLugares;
     @Column(name = "DATA_HORARIO")
     @Temporal(TemporalType.TIMESTAMP)
     private Date dataHorario;
-    @Size(max = 255)
-    @Column(name = "CUSTOS")
-    private String custos;
     @Column(name = "HORARIO_CHEGADA")
     @Temporal(TemporalType.TIMESTAMP)
     private Date horarioChegada;
+    @Size(max = 255)
+    @Column(name = "CUSTO")
+    private String custo;
     @Column(name = "ATIVO")
     private Boolean ativo;
+    @JoinColumn(name = "ID", referencedColumnName = "ID", insertable = false, updatable = false)
+    @OneToOne(optional = false)
+    private Motorista motorista;
     @OneToMany(mappedBy = "idCarona", fetch = FetchType.EAGER)
     private List<Passageiro> passageiroList;
-    @OneToOne(cascade = CascadeType.ALL, mappedBy = "carona")
-    private Motorista motorista;
 
     public Carona() {
     }
@@ -87,14 +90,6 @@ public class Carona implements Serializable {
 
     public void setId(Integer id) {
         this.id = id;
-    }
-
-    public Integer getNLugares() {
-        return nLugares;
-    }
-
-    public void setNLugares(Integer nLugares) {
-        this.nLugares = nLugares;
     }
 
     public String getLocalPartida() {
@@ -113,20 +108,20 @@ public class Carona implements Serializable {
         this.localChegada = localChegada;
     }
 
+    public Integer getNLugares() {
+        return nLugares;
+    }
+
+    public void setNLugares(Integer nLugares) {
+        this.nLugares = nLugares;
+    }
+
     public Date getDataHorario() {
         return dataHorario;
     }
 
     public void setDataHorario(Date dataHorario) {
         this.dataHorario = dataHorario;
-    }
-
-    public String getCustos() {
-        return custos;
-    }
-
-    public void setCustos(String custos) {
-        this.custos = custos;
     }
 
     public Date getHorarioChegada() {
@@ -137,12 +132,28 @@ public class Carona implements Serializable {
         this.horarioChegada = horarioChegada;
     }
 
+    public String getCusto() {
+        return custo;
+    }
+
+    public void setCusto(String custo) {
+        this.custo = custo;
+    }
+
     public Boolean getAtivo() {
         return ativo;
     }
 
     public void setAtivo(Boolean ativo) {
         this.ativo = ativo;
+    }
+
+    public Motorista getMotorista() {
+        return motorista;
+    }
+
+    public void setMotorista(Motorista motorista) {
+        this.motorista = motorista;
     }
 
     @XmlTransient
@@ -153,14 +164,6 @@ public class Carona implements Serializable {
 
     public void setPassageiroList(List<Passageiro> passageiroList) {
         this.passageiroList = passageiroList;
-    }
-
-    public Motorista getMotorista() {
-        return motorista;
-    }
-
-    public void setMotorista(Motorista motorista) {
-        this.motorista = motorista;
     }
 
     @Override
@@ -187,5 +190,5 @@ public class Carona implements Serializable {
     public String toString() {
         return "br.edu.progweb.meleva.entidades.Carona[ id=" + id + " ]";
     }
-    
+
 }

@@ -95,18 +95,18 @@ public class CaronaController {
 
     @RequestMapping(value = "projeto/criarCarona", method = RequestMethod.POST)
     @Transactional
-    public String criarCarona(HttpServletRequest request, Carona c, @RequestParam("chegada") String chegada, @RequestParam("partida") String partida) {
+    public String criarCarona(HttpServletRequest request, Carona c, @RequestParam("chegada") String chegada, @RequestParam("partida") String partida, @RequestParam("nLugares") Integer lugares, @RequestParam("placa") String placa) {
         HttpSession session = request.getSession();
         Usuario u = (Usuario) session.getAttribute("usuario");
         Motorista m = new Motorista();
         m.setIdUsuario(u);
-        m.setCarona(c);
         m.setAtivo(Boolean.TRUE);
-        meLevaFacade.criarMotorista(m);
+        meLevaFacade.criarMotorista(m);        
         u.getMotoristaList().add(m);
         c.setMotorista(m);
         c.setAtivo(Boolean.TRUE);
         c.setId(m.getId());
+        
 
         Calendar calendar = Calendar.getInstance();
         calendar.setTime(new Date());

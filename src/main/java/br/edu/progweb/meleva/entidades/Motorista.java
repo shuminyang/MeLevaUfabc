@@ -7,6 +7,7 @@ package br.edu.progweb.meleva.entidades;
 
 import java.io.Serializable;
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -35,18 +36,17 @@ public class Motorista implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
-    @Column(name = "id")
+    @Column(name = "ID")
     private Integer id;
     @Column(name = "ATIVO")
     private Boolean ativo;
+    @OneToOne(cascade = CascadeType.ALL, mappedBy = "motorista")
+    private Carona carona;
     @JoinColumn(name = "ID_USUARIO", referencedColumnName = "ID")
     @ManyToOne
     private Usuario idUsuario;
-    @JoinColumn(name = "id", referencedColumnName = "ID", insertable = false, updatable = false)
-    @OneToOne(optional = false)
-    private Carona carona;
 
     public Motorista() {
     }
@@ -71,20 +71,20 @@ public class Motorista implements Serializable {
         this.ativo = ativo;
     }
 
-    public Usuario getIdUsuario() {
-        return idUsuario;
-    }
-
-    public void setIdUsuario(Usuario idUsuario) {
-        this.idUsuario = idUsuario;
-    }
-
     public Carona getCarona() {
         return carona;
     }
 
     public void setCarona(Carona carona) {
         this.carona = carona;
+    }
+
+    public Usuario getIdUsuario() {
+        return idUsuario;
+    }
+
+    public void setIdUsuario(Usuario idUsuario) {
+        this.idUsuario = idUsuario;
     }
 
     @Override

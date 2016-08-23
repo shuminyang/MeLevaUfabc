@@ -46,7 +46,7 @@ public class Carro implements Serializable {
     @Column(name = "LUGARES")
     private Integer lugares;
     @JoinColumn(name = "ID_USUARIO", referencedColumnName = "ID")
-    @ManyToOne(optional = false)
+    @ManyToOne
     private Usuario idUsuario;
 
     public Carro() {

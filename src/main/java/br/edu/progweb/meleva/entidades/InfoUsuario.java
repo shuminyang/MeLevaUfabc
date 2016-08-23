@@ -36,9 +36,9 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "InfoUsuario.findByNome", query = "SELECT i FROM InfoUsuario i WHERE i.nome = :nome"),
     @NamedQuery(name = "InfoUsuario.findByCpf", query = "SELECT i FROM InfoUsuario i WHERE i.cpf = :cpf"),
     @NamedQuery(name = "InfoUsuario.findByEndereco", query = "SELECT i FROM InfoUsuario i WHERE i.endereco = :endereco"),
+    @NamedQuery(name = "InfoUsuario.findByEmail", query = "SELECT i FROM InfoUsuario i WHERE i.email = :email"),
     @NamedQuery(name = "InfoUsuario.findByDataNascimento", query = "SELECT i FROM InfoUsuario i WHERE i.dataNascimento = :dataNascimento"),
-    @NamedQuery(name = "InfoUsuario.findByDataInclusao", query = "SELECT i FROM InfoUsuario i WHERE i.dataInclusao = :dataInclusao"),
-    @NamedQuery(name = "InfoUsuario.findByEmail", query = "SELECT i FROM InfoUsuario i WHERE i.email = :email")})
+    @NamedQuery(name = "InfoUsuario.findByDataInclusao", query = "SELECT i FROM InfoUsuario i WHERE i.dataInclusao = :dataInclusao")})
 public class InfoUsuario implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -55,16 +55,16 @@ public class InfoUsuario implements Serializable {
     @Size(max = 255)
     @Column(name = "ENDERECO")
     private String endereco;
+    // @Pattern(regexp="[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?", message="Invalid email")//if the field contains email address consider using this annotation to enforce field validation
+    @Size(max = 255)
+    @Column(name = "EMAIL")
+    private String email;
     @Column(name = "DATA_NASCIMENTO")
     @Temporal(TemporalType.DATE)
     private Date dataNascimento;
     @Column(name = "DATA_INCLUSAO")
     @Temporal(TemporalType.DATE)
     private Date dataInclusao;
-    // @Pattern(regexp="[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?", message="Invalid email")//if the field contains email address consider using this annotation to enforce field validation
-    @Size(max = 255)
-    @Column(name = "EMAIL")
-    private String email;
     @JoinColumn(name = "ID", referencedColumnName = "ID", insertable = false, updatable = false)
     @OneToOne(optional = false)
     private Usuario usuario;
@@ -108,6 +108,14 @@ public class InfoUsuario implements Serializable {
         this.endereco = endereco;
     }
 
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
     public Date getDataNascimento() {
         return dataNascimento;
     }
@@ -122,14 +130,6 @@ public class InfoUsuario implements Serializable {
 
     public void setDataInclusao(Date dataInclusao) {
         this.dataInclusao = dataInclusao;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
     }
 
     public Usuario getUsuario() {

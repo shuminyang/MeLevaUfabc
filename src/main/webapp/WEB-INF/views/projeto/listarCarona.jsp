@@ -50,7 +50,7 @@
                         </div>
                         <div class="row">
                             <label class="col-md-8">Custos:</label>
-                            <span class="col-md-4 text-info">${carona.custos}</span>                            
+                            <span class="col-md-4 text-info">${carona.custo}</span>                            
                         </div>
                         <div class="row">
                             <label class="col-md-8">Lugares:</label>

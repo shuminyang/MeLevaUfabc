@@ -19,15 +19,15 @@ $(document).ready(function () {
                     msg.addClass('alert alert-success row');
                     $('hr').append(msg).fadeIn();
                 }
+            },
+            error: function (result) {
+                console.log(result);
+                var msg = $('<p></p>');
+                msg.append("Erro durante o cadastro!");
+                msg.addClass('alert alert-danger');
+                $('hr').append(msg).fadeIn();
+                $('button').children().removeClass('fa-spin');
             }
-//            ,
-//            error: function (result, outroResultado) {
-//                var msg = $('<p></p>');
-//                msg.append("Erro durante o cadastro!");
-//                msg.addClass('alert alert-danger');
-//                $('hr').append(msg).fadeIn();                
-//                $('button').children().removeClass('fa-spin');
-//            }
 
         });
     });
